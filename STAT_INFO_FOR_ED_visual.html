@@ -1,0 +1,1950 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>📊 STAT INFO FOR ED — สื่อการสอนภาพประกอบ</title>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --navy: #1f3a5f;
+    --blue: #2e5c8a;
+    --light-blue: #5b8fc4;
+    --sky: #e8f1fb;
+    --bg: #f5f8fc;
+    --card: #ffffff;
+    --ink: #1d2433;
+    --muted: #5e6b85;
+    --line: #dde4ef;
+    --accent: #f59e0b;
+    --accent-light: #fef3c7;
+    --green: #10b981;
+    --green-light: #d1fae5;
+    --red: #ef4444;
+    --red-light: #fee2e2;
+    --purple: #8b5cf6;
+    --purple-light: #ede9fe;
+    --pink: #ec4899;
+    --pink-light: #fce7f3;
+    --cyan: #06b6d4;
+    --cyan-light: #cffafe;
+  }
+  [data-theme="dark"] {
+    --navy: #cdd9ff;
+    --blue: #9ec0ff;
+    --light-blue: #6f95cc;
+    --sky: #1a2236;
+    --bg: #0d1424;
+    --card: #182135;
+    --ink: #e9eefc;
+    --muted: #95a3c0;
+    --line: #2a3550;
+    --accent-light: #3a3320;
+    --green-light: #1c3528;
+    --red-light: #3a1f23;
+    --purple-light: #2a223f;
+    --pink-light: #3a1f2e;
+    --cyan-light: #1a2e3a;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: 'Sarabun', 'TH Sarabun New', -apple-system, sans-serif;
+    font-size: 16px; line-height: 1.65;
+    transition: background 0.3s, color 0.3s;
+  }
+
+  /* ========== HEADER ========== */
+  header.top {
+    position: sticky; top: 0; z-index: 100;
+    background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
+    color: #fff; padding: 12px 20px;
+    display: flex; align-items: center; justify-content: space-between;
+    box-shadow: 0 4px 20px rgba(31,58,95,0.25);
+  }
+  header.top h1 { margin: 0; font-size: 18px; font-weight: 700; }
+  header.top .sub { font-size: 12px; opacity: 0.85; margin-top: 2px; }
+  header.top .actions { display: flex; gap: 8px; }
+  header.top button {
+    background: rgba(255,255,255,0.18); color: #fff;
+    border: 1px solid rgba(255,255,255,0.3);
+    padding: 7px 14px; border-radius: 8px; cursor: pointer;
+    font-family: inherit; font-size: 13px; font-weight: 500;
+    transition: all 0.2s;
+  }
+  header.top button:hover { background: rgba(255,255,255,0.3); transform: translateY(-1px); }
+
+  /* ========== HERO ========== */
+  .hero {
+    padding: 50px 30px; text-align: center;
+    background: radial-gradient(ellipse at top, var(--sky) 0%, var(--bg) 60%);
+  }
+  .hero h2 {
+    margin: 0 0 12px; font-size: 36px; color: var(--navy); font-weight: 800;
+    background: linear-gradient(135deg, var(--navy), var(--accent));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .hero p { font-size: 17px; color: var(--muted); max-width: 700px; margin: 0 auto; }
+  .hero .stats {
+    display: flex; gap: 16px; justify-content: center;
+    margin-top: 26px; flex-wrap: wrap;
+  }
+  .hero .stat {
+    background: var(--card); padding: 14px 22px; border-radius: 14px;
+    border: 1px solid var(--line); min-width: 130px;
+    box-shadow: 0 4px 16px rgba(31,58,95,0.06);
+  }
+  .hero .stat .num { font-size: 26px; font-weight: 800; color: var(--blue); }
+  .hero .stat .lab { font-size: 13px; color: var(--muted); }
+
+  /* ========== LAYOUT ========== */
+  .layout { display: flex; max-width: 1380px; margin: 0 auto; }
+  aside.toc {
+    position: sticky; top: 64px;
+    width: 250px; height: calc(100vh - 64px);
+    overflow-y: auto;
+    padding: 18px 12px; border-right: 1px solid var(--line);
+    background: var(--card);
+  }
+  aside.toc h3 {
+    margin: 0 0 8px 4px; color: var(--blue); font-size: 12px;
+    text-transform: uppercase; letter-spacing: 1px; font-weight: 700;
+  }
+  aside.toc a {
+    display: flex; align-items: center; gap: 9px;
+    padding: 8px 11px; margin: 2px 0;
+    color: var(--ink); text-decoration: none; font-size: 14px;
+    border-radius: 8px; line-height: 1.3; transition: all 0.15s;
+  }
+  aside.toc a:hover { background: var(--sky); color: var(--blue); }
+  aside.toc a.active {
+    background: linear-gradient(90deg, var(--blue), var(--light-blue));
+    color: #fff; font-weight: 600; transform: translateX(3px);
+  }
+  aside.toc a .ico { font-size: 16px; }
+
+  main.content { flex: 1; padding: 26px 30px 80px; max-width: 1020px; }
+
+  section.unit {
+    background: var(--card); border-radius: 16px;
+    padding: 26px 28px; margin-bottom: 22px;
+    border: 1px solid var(--line);
+    box-shadow: 0 2px 14px rgba(31,58,95,0.05);
+  }
+  section.unit h2 {
+    margin: 0 0 16px; color: var(--navy); font-size: 24px;
+    display: flex; align-items: center; gap: 10px;
+    font-weight: 700;
+  }
+  section.unit h2 .ico {
+    width: 38px; height: 38px; border-radius: 10px;
+    background: linear-gradient(135deg, var(--blue), var(--light-blue));
+    color: #fff; display: inline-flex; align-items: center; justify-content: center;
+    font-size: 20px;
+  }
+  section.unit h3 {
+    color: var(--blue); margin: 18px 0 10px;
+    font-size: 17px; font-weight: 700;
+    border-left: 4px solid var(--blue); padding-left: 12px;
+  }
+  section.unit h4 { color: var(--light-blue); margin: 14px 0 6px; font-size: 15px; font-weight: 600; }
+
+  ul, ol { margin: 6px 0 12px; padding-left: 22px; }
+  li { margin-bottom: 4px; }
+  .lead { font-size: 15.5px; color: var(--muted); margin: 4px 0 14px; }
+
+  /* ========== VISUAL CARDS ========== */
+  .v-grid {
+    display: grid; gap: 12px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    margin: 14px 0;
+  }
+  .v-card {
+    background: var(--bg); padding: 16px; border-radius: 12px;
+    border-top: 4px solid var(--blue);
+    transition: transform 0.2s;
+  }
+  .v-card:hover { transform: translateY(-3px); }
+  .v-card .ico-big { font-size: 32px; margin-bottom: 8px; }
+  .v-card b { display: block; color: var(--navy); margin-bottom: 4px; font-size: 16px; }
+  .v-card .desc { font-size: 14px; color: var(--muted); }
+  .v-card.cyan { border-color: var(--cyan); }
+  .v-card.green { border-color: var(--green); }
+  .v-card.purple { border-color: var(--purple); }
+  .v-card.pink { border-color: var(--pink); }
+  .v-card.accent { border-color: var(--accent); }
+
+  /* ========== TABLE ========== */
+  table {
+    width: 100%; border-collapse: separate; border-spacing: 0;
+    margin: 12px 0; font-size: 14.5px;
+    border-radius: 10px; overflow: hidden;
+    border: 1px solid var(--line);
+  }
+  table th {
+    background: linear-gradient(135deg, var(--blue), var(--light-blue));
+    color: #fff; padding: 11px 14px; text-align: left; font-weight: 600;
+  }
+  table td { padding: 10px 14px; border-top: 1px solid var(--line); vertical-align: top; }
+  table tr:nth-child(even) td { background: var(--bg); }
+
+  /* ========== FORMULA / CODE ========== */
+  code {
+    font-family: 'JetBrains Mono', monospace;
+    background: var(--accent-light); color: var(--navy);
+    padding: 2px 7px; border-radius: 5px; font-size: 13.5px;
+  }
+  .formula-block {
+    background: linear-gradient(135deg, var(--accent-light), #fff7e0);
+    padding: 14px 18px; border-radius: 10px; margin: 12px 0;
+    font-family: 'JetBrains Mono', monospace; font-size: 14px;
+    border-left: 4px solid var(--accent); color: var(--navy); font-weight: 500;
+  }
+
+  /* ========== BADGES ========== */
+  .badge {
+    display: inline-block; padding: 3px 10px; border-radius: 14px;
+    font-size: 12px; font-weight: 700;
+  }
+  .badge.des { background: #d8edff; color: #0a4b80; }
+  .badge.dia { background: var(--accent-light); color: #8a4a00; }
+  .badge.pre { background: var(--green-light); color: #0a5a3a; }
+  .badge.pres { background: var(--purple-light); color: #5b006b; }
+
+  /* ========== CALLOUT ========== */
+  .callout {
+    border-left: 4px solid var(--blue); background: var(--sky);
+    padding: 12px 16px; border-radius: 0 12px 12px 0; margin: 12px 0;
+  }
+  .callout.warn { background: var(--red-light); border-color: var(--red); }
+  .callout.success { background: var(--green-light); border-color: var(--green); }
+  .callout.tip { background: var(--accent-light); border-color: var(--accent); }
+  .callout b { color: var(--navy); }
+  [data-theme="dark"] .callout b { color: var(--ink); }
+
+  /* ========== SVG STYLES ========== */
+  .svg-wrap {
+    background: var(--bg); padding: 18px; border-radius: 12px;
+    margin: 14px 0; text-align: center;
+    border: 1px dashed var(--line);
+  }
+  .svg-wrap svg { max-width: 100%; height: auto; display: inline-block; }
+  .svg-caption {
+    font-size: 13px; color: var(--muted); margin-top: 8px; text-align: center;
+  }
+
+  /* ========== INTERACTIVE WIDGETS ========== */
+  .widget {
+    background: linear-gradient(135deg, var(--sky), var(--card));
+    padding: 18px; border-radius: 14px; margin: 14px 0;
+    border: 1.5px solid var(--blue);
+  }
+  .widget h4 {
+    margin-top: 0; color: var(--navy); font-size: 15px;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .widget input[type="number"], .widget input[type="range"] {
+    border: 1px solid var(--line); padding: 6px 10px;
+    border-radius: 6px; background: var(--card); color: var(--ink);
+    font-family: inherit; font-size: 14px; width: 80px;
+  }
+  .widget input[type="range"] { width: 100%; }
+  .widget label { display: inline-block; margin-right: 12px; font-size: 14px; }
+  .widget .out {
+    background: var(--card); padding: 12px; border-radius: 8px;
+    margin-top: 10px; font-family: 'JetBrains Mono', monospace;
+    border: 1px solid var(--line);
+  }
+  .widget .out .row { display: flex; justify-content: space-between; padding: 3px 0; }
+  .widget .out .row b { color: var(--blue); }
+
+  /* ========== QUIZ ========== */
+  .quiz-wrap { background: var(--card); border-radius: 14px; padding: 22px; border: 1px solid var(--line); }
+  .quiz-progress {
+    height: 10px; background: var(--line); border-radius: 6px;
+    overflow: hidden; margin: 8px 0 16px;
+  }
+  .quiz-progress > div {
+    height: 100%; background: linear-gradient(90deg, var(--blue), var(--accent));
+    width: 2.5%; transition: width 0.35s;
+  }
+  .quiz-q {
+    background: var(--sky); padding: 14px 18px; border-radius: 10px;
+    font-weight: 600; margin-bottom: 12px; line-height: 1.5;
+  }
+  .quiz-options { display: grid; gap: 8px; }
+  .quiz-options button {
+    background: var(--card); border: 2px solid var(--line);
+    padding: 12px 16px; border-radius: 10px; text-align: left;
+    cursor: pointer; font-family: inherit; font-size: 15px;
+    color: var(--ink); transition: all 0.2s;
+  }
+  .quiz-options button:hover:not([disabled]) {
+    border-color: var(--blue); background: var(--sky); transform: translateX(3px);
+  }
+  .quiz-options button.correct { border-color: var(--green); background: var(--green-light); color: #0a5a3a; font-weight: 700; }
+  .quiz-options button.wrong { border-color: var(--red); background: var(--red-light); color: #8b0000; }
+  .quiz-explain {
+    margin-top: 12px; padding: 12px 14px; background: var(--accent-light);
+    border-radius: 8px; border-left: 4px solid var(--accent); font-size: 14.5px;
+  }
+  .quiz-nav { display: flex; gap: 10px; margin-top: 16px; }
+  .quiz-nav button {
+    flex: 1; padding: 12px; font-size: 15px; font-weight: 600;
+    border: none; border-radius: 8px; cursor: pointer; font-family: inherit;
+  }
+  .btn-prev { background: var(--line); color: var(--ink); }
+  .btn-next { background: linear-gradient(135deg, var(--blue), var(--light-blue)); color: #fff; }
+  .quiz-nav button:disabled { opacity: 0.4; cursor: not-allowed; }
+  .quiz-summary {
+    text-align: center; padding: 32px 20px;
+    background: linear-gradient(135deg, var(--accent-light), var(--card));
+    border-radius: 14px;
+  }
+  .quiz-summary h3 { color: var(--navy); margin: 0 0 8px; font-size: 26px; }
+  .quiz-summary .score { font-size: 56px; font-weight: 800; color: var(--accent); margin: 8px 0; line-height: 1; }
+
+  /* ========== ESSAY ========== */
+  details {
+    background: var(--bg); border-radius: 12px; padding: 14px 18px;
+    margin: 10px 0; border-left: 4px solid var(--blue); transition: all 0.2s;
+  }
+  details summary {
+    cursor: pointer; font-weight: 700; color: var(--navy); font-size: 16px;
+  }
+  details[open] { background: var(--sky); }
+  details[open] summary { margin-bottom: 10px; }
+
+  /* ========== TABS ========== */
+  .tabs { display: flex; gap: 4px; margin-bottom: 12px; border-bottom: 2px solid var(--line); }
+  .tabs button {
+    background: transparent; border: none; padding: 9px 18px;
+    cursor: pointer; font-family: inherit; font-size: 14px;
+    color: var(--muted); font-weight: 600; border-bottom: 3px solid transparent;
+    margin-bottom: -2px; transition: all 0.2s;
+  }
+  .tabs button.on { color: var(--blue); border-bottom-color: var(--blue); }
+  .tab-panel { display: none; }
+  .tab-panel.on { display: block; }
+
+  /* ========== FLOWCHART ========== */
+  .flow {
+    display: flex; flex-direction: column; gap: 8px;
+    background: var(--bg); padding: 18px; border-radius: 12px;
+    margin: 14px 0;
+  }
+  .flow-step {
+    background: var(--card); border: 2px solid var(--blue);
+    padding: 12px 16px; border-radius: 10px;
+    display: flex; align-items: center; gap: 10px; font-size: 14.5px;
+  }
+  .flow-step .num {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--blue); color: #fff; font-weight: 700;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .flow-arrow { text-align: center; color: var(--blue); font-size: 22px; line-height: 0.8; }
+
+  /* ========== RESPONSIVE ========== */
+  @media (max-width: 900px) {
+    .layout { flex-direction: column; }
+    aside.toc { position: static; width: 100%; height: auto; max-height: 220px; }
+    main.content { padding: 16px; }
+    .hero h2 { font-size: 26px; }
+    .v-grid { grid-template-columns: 1fr; }
+  }
+
+  section.unit { scroll-margin-top: 80px; }
+
+  @media print {
+    aside.toc, header.top, .hero, .quiz-wrap, .widget { display: none; }
+    section.unit { box-shadow: none; page-break-inside: avoid; border: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div>
+    <h1>📊 STAT INFO FOR ED — สื่อการสอนภาพประกอบ</h1>
+    <div class="sub">2758501 สถิติและสารสนเทศทางการศึกษา · ภาคปลาย ปีการศึกษา 2568</div>
+  </div>
+  <div class="actions">
+    <button onclick="document.documentElement.dataset.theme = document.documentElement.dataset.theme==='dark'?'light':'dark'">🌓</button>
+    <button onclick="window.print()">🖨️</button>
+  </div>
+</header>
+
+<div class="hero">
+  <h2>เรียนรู้สถิติและการวิเคราะห์ข้อมูล<br>ผ่านภาพและตัวอย่างจริง</h2>
+  <p>คู่มือสรุปแบบ visual เน้นให้เห็นภาพ พร้อมเครื่องมือคำนวณแบบโต้ตอบ และแบบทดสอบ 40 ข้อ</p>
+  <div class="stats">
+    <div class="stat"><div class="num">16</div><div class="lab">บทเรียน</div></div>
+    <div class="stat"><div class="num">20+</div><div class="lab">แผนภาพ SVG</div></div>
+    <div class="stat"><div class="num">40</div><div class="lab">ปรนัย + เฉลย</div></div>
+    <div class="stat"><div class="num">3</div><div class="lab">อัตนัย</div></div>
+    <div class="stat"><div class="num">5</div><div class="lab">เครื่องมือคำนวณ</div></div>
+  </div>
+</div>
+
+<div class="layout">
+
+  <aside class="toc">
+    <h3>สารบัญ</h3>
+    <a href="#s1"><span class="ico">🗺️</span>1. ภาพรวมรายวิชา</a>
+    <a href="#s2"><span class="ico">📏</span>2. ระดับการวัด</a>
+    <a href="#s3"><span class="ico">📈</span>3. สถิติพรรณนา</a>
+    <a href="#s4"><span class="ico">🎲</span>4. การสุ่มตัวอย่าง</a>
+    <a href="#s5"><span class="ico">🎯</span>5. สถิติอ้างอิง</a>
+    <a href="#s6"><span class="ico">⚖️</span>6. t-test</a>
+    <a href="#s7"><span class="ico">📊</span>7. ANOVA</a>
+    <a href="#s8"><span class="ico">🔗</span>8. Correlation & Chi²</a>
+    <a href="#s9"><span class="ico">📉</span>9. Regression</a>
+    <a href="#s10"><span class="ico">🏔️</span>10. Data Analytics 4 ระดับ</a>
+    <a href="#s11"><span class="ico">🔬</span>11. Diagnostic</a>
+    <a href="#s12"><span class="ico">🔮</span>12. Predictive & Metrics</a>
+    <a href="#s13"><span class="ico">🌳</span>13. Decision Tree</a>
+    <a href="#s14"><span class="ico">⚖️</span>14. Validation & SMOTE</a>
+    <a href="#s15"><span class="ico">📣</span>15. Data Communication</a>
+    <a href="#s16"><span class="ico">🟠</span>16. Orange</a>
+    <a href="#quiz"><span class="ico">📝</span>แบบทดสอบ 40 ข้อ</a>
+    <a href="#essay"><span class="ico">✍️</span>อัตนัย 3 ข้อ</a>
+    <a href="#tips"><span class="ico">💡</span>เคล็ดลับสอบ</a>
+  </aside>
+
+  <main class="content">
+
+    <!-- 1. ภาพรวม -->
+    <section class="unit" id="s1">
+      <h2><span class="ico">🗺️</span>1. ภาพรวมรายวิชา</h2>
+      <p class="lead">หลักสูตรนี้จะพาคุณเดินทางจาก "เก็บข้อมูล" สู่ "ตัดสินใจด้วยข้อมูล" — สองครึ่งภาคที่เชื่อมต่อกันอย่างลงตัว</p>
+
+      <div class="svg-wrap">
+        <svg viewBox="0 0 800 280" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#5b8fc4"/><stop offset="100%" stop-color="#2e5c8a"/>
+            </linearGradient>
+            <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#ef4444"/>
+            </linearGradient>
+          </defs>
+
+          <!-- Half 1 -->
+          <rect x="20" y="40" width="370" height="220" rx="14" fill="url(#grad1)" opacity="0.15"/>
+          <text x="205" y="70" text-anchor="middle" font-size="18" font-weight="700" fill="#1f3a5f">ครึ่งที่ 1: สถิติพื้นฐาน</text>
+          <text x="205" y="92" text-anchor="middle" font-size="13" fill="#5e6b85">สัปดาห์ 1–9</text>
+
+          <g font-size="13" fill="#1d2433">
+            <rect x="40" y="105" width="155" height="32" rx="8" fill="#fff" stroke="#5b8fc4"/>
+            <text x="117" y="126" text-anchor="middle">📏 ระดับการวัด</text>
+            <rect x="210" y="105" width="155" height="32" rx="8" fill="#fff" stroke="#5b8fc4"/>
+            <text x="287" y="126" text-anchor="middle">📈 สถิติพรรณนา</text>
+            <rect x="40" y="145" width="155" height="32" rx="8" fill="#fff" stroke="#5b8fc4"/>
+            <text x="117" y="166" text-anchor="middle">🎲 การสุ่มตัวอย่าง</text>
+            <rect x="210" y="145" width="155" height="32" rx="8" fill="#fff" stroke="#5b8fc4"/>
+            <text x="287" y="166" text-anchor="middle">🎯 ทดสอบสมมติฐาน</text>
+            <rect x="40" y="185" width="155" height="32" rx="8" fill="#fff" stroke="#5b8fc4"/>
+            <text x="117" y="206" text-anchor="middle">⚖️ t-test / ANOVA</text>
+            <rect x="210" y="185" width="155" height="32" rx="8" fill="#fff" stroke="#5b8fc4"/>
+            <text x="287" y="206" text-anchor="middle">🔗 Corr / Chi² / Reg</text>
+          </g>
+
+          <!-- arrow -->
+          <text x="400" y="155" text-anchor="middle" font-size="36" fill="#1f3a5f">→</text>
+
+          <!-- Half 2 -->
+          <rect x="410" y="40" width="370" height="220" rx="14" fill="url(#grad2)" opacity="0.15"/>
+          <text x="595" y="70" text-anchor="middle" font-size="18" font-weight="700" fill="#1f3a5f">ครึ่งที่ 2: Data Analytics</text>
+          <text x="595" y="92" text-anchor="middle" font-size="13" fill="#5e6b85">สัปดาห์ 10–14</text>
+
+          <g font-size="13" fill="#1d2433">
+            <rect x="430" y="105" width="155" height="32" rx="8" fill="#fff" stroke="#f59e0b"/>
+            <text x="507" y="126" text-anchor="middle">🏔️ Analytics 4 ระดับ</text>
+            <rect x="600" y="105" width="155" height="32" rx="8" fill="#fff" stroke="#f59e0b"/>
+            <text x="677" y="126" text-anchor="middle">🔬 Diagnostic</text>
+            <rect x="430" y="145" width="155" height="32" rx="8" fill="#fff" stroke="#f59e0b"/>
+            <text x="507" y="166" text-anchor="middle">🔮 Predictive</text>
+            <rect x="600" y="145" width="155" height="32" rx="8" fill="#fff" stroke="#f59e0b"/>
+            <text x="677" y="166" text-anchor="middle">🌳 Decision Tree</text>
+            <rect x="430" y="185" width="155" height="32" rx="8" fill="#fff" stroke="#f59e0b"/>
+            <text x="507" y="206" text-anchor="middle">⚖️ SMOTE / Validate</text>
+            <rect x="600" y="185" width="155" height="32" rx="8" fill="#fff" stroke="#f59e0b"/>
+            <text x="677" y="206" text-anchor="middle">📣 Communication</text>
+          </g>
+        </svg>
+        <div class="svg-caption">2 ครึ่งภาคของรายวิชา จากสถิติพื้นฐานสู่การวิเคราะห์ข้อมูลขั้นสูง</div>
+      </div>
+    </section>
+
+    <!-- 2. ระดับการวัด -->
+    <section class="unit" id="s2">
+      <h2><span class="ico">📏</span>2. ระดับการวัดของตัวแปร</h2>
+      <p class="lead">ผิดด่านนี้ = ผิดทั้งงาน ต้องเลือกสถิติให้ "ตรงกับมาตรวัด" ของตัวแปรเสมอ</p>
+
+      <div class="svg-wrap">
+        <svg viewBox="0 0 700 280" xmlns="http://www.w3.org/2000/svg">
+          <!-- 4 levels stacked like ladder -->
+          <g font-family="Sarabun, sans-serif">
+            <!-- Ratio (top) -->
+            <rect x="100" y="20" width="500" height="55" rx="10" fill="#10b981"/>
+            <text x="120" y="48" font-size="18" font-weight="700" fill="#fff">Ratio</text>
+            <text x="120" y="68" font-size="12" fill="#fff">+ มีศูนย์แท้ → ใช้ทุกสถิติได้ (น้ำหนัก, รายได้, อายุ)</text>
+
+            <!-- Interval -->
+            <rect x="100" y="85" width="500" height="55" rx="10" fill="#3b82f6"/>
+            <text x="120" y="113" font-size="18" font-weight="700" fill="#fff">Interval</text>
+            <text x="120" y="133" font-size="12" fill="#fff">+ ช่วงเท่ากัน (ไม่มีศูนย์แท้) → Mean, SD, Pearson, t-test, ANOVA</text>
+
+            <!-- Ordinal -->
+            <rect x="100" y="150" width="500" height="55" rx="10" fill="#8b5cf6"/>
+            <text x="120" y="178" font-size="18" font-weight="700" fill="#fff">Ordinal</text>
+            <text x="120" y="198" font-size="12" fill="#fff">+ เรียงลำดับได้ → Median, Spearman (เกรด A-F, พึงพอใจ)</text>
+
+            <!-- Nominal -->
+            <rect x="100" y="215" width="500" height="55" rx="10" fill="#ec4899"/>
+            <text x="120" y="243" font-size="18" font-weight="700" fill="#fff">Nominal</text>
+            <text x="120" y="263" font-size="12" fill="#fff">จำแนกได้ ไม่มีลำดับ → ความถี่, %, Mode, Phi/Cramer</text>
+
+            <!-- Arrows showing hierarchy -->
+            <text x="40" y="50" font-size="14" fill="#1f3a5f">⬆ ใช้สถิติได้มาก</text>
+            <text x="40" y="245" font-size="14" fill="#1f3a5f">⬇ ใช้ได้น้อย</text>
+          </g>
+        </svg>
+        <div class="svg-caption">มาตรวัดเรียงจากน้อย (ล่าง) ไปมาก (บน) — ระดับสูงรวมความสามารถของระดับล่างทั้งหมด</div>
+      </div>
+
+      <div class="callout tip">
+        💡 <b>กฎจำง่าย:</b> "<b>NO</b>ON <b>I</b>nterval <b>R</b>atio" → Nominal &lt; Ordinal &lt; Interval &lt; Ratio
+      </div>
+    </section>
+
+    <!-- 3. สถิติพรรณนา -->
+    <section class="unit" id="s3">
+      <h2><span class="ico">📈</span>3. สถิติพรรณนา</h2>
+
+      <h3>ค่ากลาง 3 ตัว — เลือกอันไหน?</h3>
+      <div class="svg-wrap">
+        <svg viewBox="0 0 700 220" xmlns="http://www.w3.org/2000/svg">
+          <!-- Distribution curve -->
+          <path d="M 50,180 Q 200,30 350,180 T 650,180" stroke="#3b82f6" stroke-width="2.5" fill="rgba(59,130,246,0.08)"/>
+          <line x1="50" y1="180" x2="650" y2="180" stroke="#5e6b85"/>
+
+          <!-- Mean (center) -->
+          <line x1="350" y1="180" x2="350" y2="50" stroke="#10b981" stroke-width="2" stroke-dasharray="4"/>
+          <circle cx="350" cy="50" r="6" fill="#10b981"/>
+          <text x="350" y="40" text-anchor="middle" font-size="13" font-weight="700" fill="#10b981">Mean</text>
+
+          <!-- Skewed example with outlier -->
+          <circle cx="600" cy="170" r="6" fill="#ef4444"/>
+          <text x="600" y="160" text-anchor="middle" font-size="11" fill="#ef4444">outlier</text>
+
+          <!-- Mean shift -->
+          <line x1="380" y1="180" x2="380" y2="195" stroke="#ef4444" stroke-width="2"/>
+          <text x="380" y="212" text-anchor="middle" font-size="11" fill="#ef4444">Mean ดึงไปทางขวา</text>
+
+          <!-- Median resistant -->
+          <line x1="345" y1="195" x2="345" y2="208" stroke="#8b5cf6" stroke-width="2"/>
+          <text x="305" y="208" text-anchor="middle" font-size="11" fill="#8b5cf6">Median นิ่ง</text>
+        </svg>
+        <div class="svg-caption">เมื่อมี outlier — Mean จะถูกดึง แต่ Median ทนทาน</div>
+      </div>
+
+      <div class="v-grid">
+        <div class="v-card green">
+          <div class="ico-big">🎯</div>
+          <b>Mean (ค่าเฉลี่ย)</b>
+          <div class="desc">ใช้กับ Interval/Ratio · ถูกดึงโดย outlier</div>
+        </div>
+        <div class="v-card purple">
+          <div class="ico-big">⚖️</div>
+          <b>Median (มัธยฐาน)</b>
+          <div class="desc">ใช้ตั้งแต่ Ordinal ขึ้นไป · ทนต่อ outlier</div>
+        </div>
+        <div class="v-card pink">
+          <div class="ico-big">🔝</div>
+          <b>Mode (ฐานนิยม)</b>
+          <div class="desc">ใช้ได้ทุกมาตรวัด · ค่าที่พบบ่อยสุด</div>
+        </div>
+      </div>
+
+      <h3>การกระจาย: Variance & SD</h3>
+      <div class="formula-block">SD = √( Σ(x − x̄)² / (n − 1) )  &nbsp;|&nbsp; SD ↑ = ข้อมูลกระจายตัวมาก</div>
+    </section>
+
+    <!-- 4. การสุ่มตัวอย่าง -->
+    <section class="unit" id="s4">
+      <h2><span class="ico">🎲</span>4. การสุ่มตัวอย่าง (Sampling)</h2>
+
+      <div class="svg-wrap">
+        <svg viewBox="0 0 800 240" xmlns="http://www.w3.org/2000/svg">
+          <!-- Stratified -->
+          <g>
+            <text x="100" y="20" text-anchor="middle" font-size="13" font-weight="700" fill="#1f3a5f">Stratified</text>
+            <text x="100" y="36" text-anchor="middle" font-size="10" fill="#5e6b85">แบ่งเป็นชั้น สุ่มในแต่ละชั้น</text>
+            <rect x="40" y="50" width="120" height="40" fill="#fee2e2" stroke="#ef4444"/>
+            <rect x="40" y="92" width="120" height="40" fill="#dbeafe" stroke="#3b82f6"/>
+            <rect x="40" y="134" width="120" height="40" fill="#d1fae5" stroke="#10b981"/>
+            <rect x="40" y="176" width="120" height="40" fill="#fef3c7" stroke="#f59e0b"/>
+            <!-- selected dots -->
+            <circle cx="65" cy="70" r="3" fill="#000"/><circle cx="135" cy="78" r="3" fill="#000"/>
+            <circle cx="80" cy="112" r="3" fill="#000"/><circle cx="120" cy="118" r="3" fill="#000"/>
+            <circle cx="65" cy="155" r="3" fill="#000"/><circle cx="135" cy="160" r="3" fill="#000"/>
+            <circle cx="85" cy="195" r="3" fill="#000"/><circle cx="125" cy="200" r="3" fill="#000"/>
+          </g>
+
+          <!-- Cluster -->
+          <g>
+            <text x="320" y="20" text-anchor="middle" font-size="13" font-weight="700" fill="#1f3a5f">Cluster</text>
+            <text x="320" y="36" text-anchor="middle" font-size="10" fill="#5e6b85">แบ่งเป็นกลุ่ม สุ่มทั้งกลุ่ม</text>
+            <circle cx="280" cy="80" r="32" fill="#fee2e2" stroke="#ef4444" stroke-width="2"/>
+            <circle cx="270" cy="75" r="3" fill="#000"/><circle cx="290" cy="78" r="3" fill="#000"/><circle cx="280" cy="92" r="3" fill="#000"/>
+            <circle cx="360" cy="80" r="32" fill="#dbeafe" stroke="#3b82f6" stroke-width="3"/>
+            <circle cx="350" cy="75" r="3" fill="#000"/><circle cx="370" cy="78" r="3" fill="#000"/><circle cx="360" cy="92" r="3" fill="#000"/>
+            <circle cx="280" cy="160" r="32" fill="#d1fae5" stroke="#10b981" stroke-width="3"/>
+            <circle cx="270" cy="155" r="3" fill="#000"/><circle cx="290" cy="158" r="3" fill="#000"/><circle cx="280" cy="172" r="3" fill="#000"/>
+            <circle cx="360" cy="160" r="32" fill="#fef3c7" stroke="#f59e0b"/>
+            <circle cx="350" cy="155" r="3" fill="#000"/><circle cx="370" cy="158" r="3" fill="#000"/><circle cx="360" cy="172" r="3" fill="#000"/>
+            <text x="320" y="220" text-anchor="middle" font-size="10" fill="#5e6b85">เลือก 2 กลุ่ม — สุ่มทุกคนในกลุ่มที่เลือก</text>
+          </g>
+
+          <!-- Systematic -->
+          <g>
+            <text x="600" y="20" text-anchor="middle" font-size="13" font-weight="700" fill="#1f3a5f">Systematic</text>
+            <text x="600" y="36" text-anchor="middle" font-size="10" fill="#5e6b85">เลือกทุก k คน</text>
+            <g transform="translate(490,55)">
+              <!-- 20 dots in row -->
+              <circle cx="10" cy="10" r="6" fill="#3b82f6"/>
+              <circle cx="30" cy="10" r="6" fill="#ddd"/>
+              <circle cx="50" cy="10" r="6" fill="#ddd"/>
+              <circle cx="70" cy="10" r="6" fill="#3b82f6"/>
+              <circle cx="90" cy="10" r="6" fill="#ddd"/>
+              <circle cx="110" cy="10" r="6" fill="#ddd"/>
+              <circle cx="130" cy="10" r="6" fill="#3b82f6"/>
+              <circle cx="150" cy="10" r="6" fill="#ddd"/>
+              <circle cx="170" cy="10" r="6" fill="#ddd"/>
+              <circle cx="190" cy="10" r="6" fill="#3b82f6"/>
+              <text x="100" y="40" text-anchor="middle" font-size="11" fill="#5e6b85">k = 3 (เลือกทุกคนที่ 3)</text>
+            </g>
+            <!-- Simple Random -->
+            <text x="600" y="120" text-anchor="middle" font-size="13" font-weight="700" fill="#1f3a5f">Simple Random</text>
+            <g transform="translate(490,140)">
+              <circle cx="10" cy="10" r="6" fill="#ddd"/>
+              <circle cx="30" cy="10" r="6" fill="#ef4444"/>
+              <circle cx="50" cy="10" r="6" fill="#ddd"/>
+              <circle cx="70" cy="10" r="6" fill="#ef4444"/>
+              <circle cx="90" cy="10" r="6" fill="#ddd"/>
+              <circle cx="110" cy="10" r="6" fill="#ddd"/>
+              <circle cx="130" cy="10" r="6" fill="#ef4444"/>
+              <circle cx="150" cy="10" r="6" fill="#ef4444"/>
+              <circle cx="170" cy="10" r="6" fill="#ddd"/>
+              <circle cx="190" cy="10" r="6" fill="#ddd"/>
+              <text x="100" y="40" text-anchor="middle" font-size="11" fill="#5e6b85">สุ่มแบบจับฉลาก</text>
+            </g>
+          </g>
+        </svg>
+        <div class="svg-caption">วิธีสุ่มแบบความน่าจะเป็น 4 แบบหลัก</div>
+      </div>
+
+      <h3>การคำนวณขนาดตัวอย่าง — สูตร Yamane</h3>
+      <div class="formula-block">n = N / (1 + N · e²)  &nbsp;|&nbsp; N = ขนาดประชากร, e = ความคลาดเคลื่อน (เช่น 0.05)</div>
+
+      <div class="widget">
+        <h4>🧮 ลองคำนวณดู</h4>
+        <label>ประชากร N: <input type="number" id="ya_N" value="1000" min="1"/></label>
+        <label>ความคลาดเคลื่อน e: <input type="number" id="ya_e" value="0.05" step="0.01" min="0.01" max="0.5"/></label>
+        <button onclick="calcYamane()" style="background:var(--blue); color:#fff; border:none; padding:6px 16px; border-radius:6px; cursor:pointer; font-family:inherit">คำนวณ</button>
+        <div class="out" id="ya_out">ขนาดตัวอย่างที่ต้องใช้: <b>—</b></div>
+      </div>
+    </section>
+
+    <!-- 5. สถิติอ้างอิง -->
+    <section class="unit" id="s5">
+      <h2><span class="ico">🎯</span>5. สถิติอ้างอิง — Hypothesis Testing</h2>
+
+      <h3>4 ขั้นตอนการทดสอบสมมติฐาน</h3>
+      <div class="flow">
+        <div class="flow-step"><div class="num">1</div><div><b>ตั้งสมมติฐาน</b> H0 (มี = เสมอ) และ H1 (≠, &lt;, &gt;)</div></div>
+        <div class="flow-arrow">▼</div>
+        <div class="flow-step"><div class="num">2</div><div><b>กำหนดนัยสำคัญ α</b> เช่น 0.05 หรือ 0.01</div></div>
+        <div class="flow-arrow">▼</div>
+        <div class="flow-step"><div class="num">3</div><div><b>เลือก/คำนวณค่าสถิติทดสอบ</b> + ตรวจ assumptions</div></div>
+        <div class="flow-arrow">▼</div>
+        <div class="flow-step"><div class="num">4</div><div><b>เปรียบเทียบ p-value กับ α</b> p &lt; α ⇒ ปฏิเสธ H0</div></div>
+      </div>
+
+      <h3>Two-tailed vs One-tailed</h3>
+      <div class="svg-wrap">
+        <svg viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg">
+          <!-- Two-tailed -->
+          <g>
+            <text x="200" y="20" text-anchor="middle" font-size="14" font-weight="700" fill="#1f3a5f">Two-tailed (μ ≠ a)</text>
+            <path d="M 50,160 Q 200,40 350,160" stroke="#3b82f6" stroke-width="2" fill="rgba(59,130,246,0.1)"/>
+            <line x1="50" y1="160" x2="350" y2="160" stroke="#5e6b85"/>
+            <!-- Critical regions -->
+            <path d="M 50,160 Q 80,140 90,160 Z" fill="#ef4444" opacity="0.5"/>
+            <path d="M 310,160 Q 320,140 350,160 Z" fill="#ef4444" opacity="0.5"/>
+            <text x="70" y="180" font-size="11" fill="#ef4444">α/2</text>
+            <text x="320" y="180" font-size="11" fill="#ef4444">α/2</text>
+            <text x="200" y="120" text-anchor="middle" font-size="12" fill="#10b981">ไม่ปฏิเสธ H0</text>
+          </g>
+
+          <!-- One-tailed (right) -->
+          <g>
+            <text x="600" y="20" text-anchor="middle" font-size="14" font-weight="700" fill="#1f3a5f">One-tailed (μ &gt; a)</text>
+            <path d="M 450,160 Q 600,40 750,160" stroke="#3b82f6" stroke-width="2" fill="rgba(59,130,246,0.1)"/>
+            <line x1="450" y1="160" x2="750" y2="160" stroke="#5e6b85"/>
+            <path d="M 700,160 Q 720,140 750,160 Z" fill="#ef4444" opacity="0.5"/>
+            <text x="715" y="180" font-size="11" fill="#ef4444">α</text>
+            <text x="600" y="120" text-anchor="middle" font-size="12" fill="#10b981">ไม่ปฏิเสธ H0</text>
+          </g>
+        </svg>
+        <div class="svg-caption">เขตปฏิเสธ H0 (สีแดง) กระจายเป็น 2 ฝั่งหรือฝั่งเดียวขึ้นกับชนิดของ H1</div>
+      </div>
+
+      <h3>Type I & Type II Error</h3>
+      <div class="svg-wrap">
+        <svg viewBox="0 0 600 280" xmlns="http://www.w3.org/2000/svg">
+          <!-- 2x2 grid -->
+          <g font-family="Sarabun, sans-serif">
+            <text x="300" y="25" text-anchor="middle" font-size="14" font-weight="700" fill="#1f3a5f">ความเป็นจริง</text>
+            <text x="200" y="50" text-anchor="middle" font-size="13" font-weight="600" fill="#5e6b85">H0 จริง</text>
+            <text x="450" y="50" text-anchor="middle" font-size="13" font-weight="600" fill="#5e6b85">H0 เท็จ</text>
+
+            <!-- Decision label vertical -->
+            <text x="50" y="160" font-size="14" font-weight="700" fill="#1f3a5f" transform="rotate(-90, 50, 160)">การตัดสินใจ</text>
+
+            <text x="100" y="125" font-size="13" font-weight="600" fill="#5e6b85">ปฏิเสธ H0</text>
+            <text x="100" y="225" font-size="13" font-weight="600" fill="#5e6b85">ไม่ปฏิเสธ H0</text>
+
+            <!-- 4 cells -->
+            <rect x="140" y="70" width="200" height="100" rx="10" fill="#fee2e2" stroke="#ef4444" stroke-width="2"/>
+            <text x="240" y="115" text-anchor="middle" font-size="14" font-weight="700" fill="#ef4444">Type I Error</text>
+            <text x="240" y="138" text-anchor="middle" font-size="13" fill="#ef4444">α</text>
+            <text x="240" y="158" text-anchor="middle" font-size="11" fill="#5e6b85">ตื่นตูม (ผิดประเภทที่ 1)</text>
+
+            <rect x="350" y="70" width="200" height="100" rx="10" fill="#d1fae5" stroke="#10b981" stroke-width="2"/>
+            <text x="450" y="115" text-anchor="middle" font-size="14" font-weight="700" fill="#10b981">✓ Power</text>
+            <text x="450" y="138" text-anchor="middle" font-size="13" fill="#10b981">1 − β</text>
+            <text x="450" y="158" text-anchor="middle" font-size="11" fill="#5e6b85">เห็นความต่างที่เกิดขึ้นจริง</text>
+
+            <rect x="140" y="180" width="200" height="100" rx="10" fill="#d1fae5" stroke="#10b981" stroke-width="2"/>
+            <text x="240" y="225" text-anchor="middle" font-size="14" font-weight="700" fill="#10b981">✓ ถูกต้อง</text>
+            <text x="240" y="248" text-anchor="middle" font-size="11" fill="#5e6b85">ไม่มีอะไรเปลี่ยน + ไม่ปฏิเสธ</text>
+
+            <rect x="350" y="180" width="200" height="100" rx="10" fill="#fee2e2" stroke="#ef4444" stroke-width="2"/>
+            <text x="450" y="225" text-anchor="middle" font-size="14" font-weight="700" fill="#ef4444">Type II Error</text>
+            <text x="450" y="248" text-anchor="middle" font-size="13" fill="#ef4444">β</text>
+            <text x="450" y="268" text-anchor="middle" font-size="11" fill="#5e6b85">มองข้าม (ผิดประเภทที่ 2)</text>
+          </g>
+        </svg>
+        <div class="svg-caption">ตารางตัดสินใจ — เป้าหมายคือ "ไม่ตื่นตูม + ไม่มองข้าม"</div>
+      </div>
+    </section>
+
+    <!-- 6. t-test -->
+    <section class="unit" id="s6">
+      <h2><span class="ico">⚖️</span>6. การทดสอบค่าเฉลี่ย 1–2 กลุ่ม (t-test)</h2>
+
+      <h3>เลือก t-test ตัวไหน? (Decision Flow)</h3>
+      <div class="svg-wrap">
+        <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" font-family="Sarabun, sans-serif">
+          <!-- Start -->
+          <rect x="320" y="10" width="160" height="40" rx="20" fill="#1f3a5f"/>
+          <text x="400" y="35" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">มีกี่กลุ่ม?</text>
+
+          <!-- 1 group -->
+          <line x1="380" y1="50" x2="120" y2="80" stroke="#5e6b85" stroke-width="1.5"/>
+          <text x="170" y="70" font-size="11" fill="#5e6b85">1 กลุ่ม</text>
+          <rect x="40" y="80" width="160" height="40" rx="8" fill="#fff" stroke="#3b82f6" stroke-width="2"/>
+          <text x="120" y="105" text-anchor="middle" font-size="13" font-weight="600" fill="#1f3a5f">One-Sample t-test</text>
+          <text x="120" y="135" text-anchor="middle" font-size="11" fill="#5e6b85">ถ้าไม่ Normal:</text>
+          <rect x="40" y="142" width="160" height="32" rx="8" fill="#fef3c7" stroke="#f59e0b"/>
+          <text x="120" y="162" text-anchor="middle" font-size="12" fill="#8a4a00">Wilcoxon Signed-Rank</text>
+
+          <!-- 2 groups -->
+          <line x1="420" y1="50" x2="580" y2="80" stroke="#5e6b85" stroke-width="1.5"/>
+          <text x="540" y="70" font-size="11" fill="#5e6b85">2 กลุ่ม</text>
+          <rect x="500" y="80" width="160" height="40" rx="20" fill="#1f3a5f"/>
+          <text x="580" y="105" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">อิสระต่อกัน?</text>
+
+          <!-- Independent -->
+          <line x1="540" y1="120" x2="350" y2="160" stroke="#5e6b85" stroke-width="1.5"/>
+          <text x="400" y="140" font-size="11" fill="#5e6b85">Yes (อิสระ)</text>
+          <rect x="270" y="160" width="170" height="36" rx="20" fill="#1f3a5f"/>
+          <text x="355" y="183" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">Normal? (Shapiro)</text>
+
+          <!-- Levene -->
+          <line x1="320" y1="196" x2="200" y2="230" stroke="#5e6b85"/>
+          <text x="240" y="216" font-size="11" fill="#5e6b85">Yes</text>
+          <rect x="120" y="230" width="160" height="36" rx="20" fill="#1f3a5f"/>
+          <text x="200" y="253" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">Levene's Test?</text>
+
+          <line x1="160" y1="266" x2="80" y2="300" stroke="#5e6b85"/>
+          <text x="100" y="286" font-size="11" fill="#5e6b85">p ≥ α</text>
+          <rect x="20" y="300" width="120" height="40" rx="8" fill="#d1fae5" stroke="#10b981" stroke-width="2"/>
+          <text x="80" y="325" text-anchor="middle" font-size="12" font-weight="700" fill="#0a5a3a">Student's t</text>
+
+          <line x1="240" y1="266" x2="220" y2="300" stroke="#5e6b85"/>
+          <text x="245" y="286" font-size="11" fill="#5e6b85">p &lt; α</text>
+          <rect x="160" y="300" width="120" height="40" rx="8" fill="#d1fae5" stroke="#10b981" stroke-width="2"/>
+          <text x="220" y="325" text-anchor="middle" font-size="12" font-weight="700" fill="#0a5a3a">Welch's t</text>
+
+          <line x1="380" y1="196" x2="380" y2="300" stroke="#5e6b85"/>
+          <text x="395" y="240" font-size="11" fill="#5e6b85">No</text>
+          <rect x="320" y="300" width="120" height="40" rx="8" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+          <text x="380" y="325" text-anchor="middle" font-size="11" font-weight="700" fill="#8a4a00">Mann-Whitney U</text>
+
+          <!-- Paired -->
+          <line x1="620" y1="120" x2="620" y2="160" stroke="#5e6b85"/>
+          <text x="640" y="140" font-size="11" fill="#5e6b85">No (Paired)</text>
+          <rect x="520" y="160" width="200" height="40" rx="8" fill="#d1fae5" stroke="#10b981" stroke-width="2"/>
+          <text x="620" y="185" text-anchor="middle" font-size="12" font-weight="700" fill="#0a5a3a">Paired t-test (Pre/Post)</text>
+          <text x="620" y="225" text-anchor="middle" font-size="11" fill="#5e6b85">ถ้า d ไม่ Normal:</text>
+          <rect x="520" y="232" width="200" height="32" rx="8" fill="#fef3c7" stroke="#f59e0b"/>
+          <text x="620" y="252" text-anchor="middle" font-size="12" fill="#8a4a00">Wilcoxon Signed-Rank</text>
+        </svg>
+        <div class="svg-caption">แผนภาพการตัดสินใจเลือก t-test (และสถิติทางเลือก) ตาม assumption</div>
+      </div>
+    </section>
+
+    <!-- 7. ANOVA -->
+    <section class="unit" id="s7">
+      <h2><span class="ico">📊</span>7. ANOVA — เปรียบเทียบ &gt; 2 กลุ่ม</h2>
+      <p class="lead">ใช้แทน t-test ซ้ำหลายคู่ เพื่อหลีก "Inflation of Type I error"</p>
+
+      <h3>หลักคิด: เปรียบเทียบความแปรปรวน 2 ส่วน</h3>
+      <div class="svg-wrap">
+        <svg viewBox="0 0 700 280" xmlns="http://www.w3.org/2000/svg">
+          <!-- Case 1: between > within → big F -->
+          <g>
+            <text x="170" y="20" text-anchor="middle" font-size="14" font-weight="700" fill="#1f3a5f">F สูง: ปฏิเสธ H0</text>
+            <text x="170" y="38" text-anchor="middle" font-size="11" fill="#5e6b85">กลุ่มต่างกันชัด ภายในกลุ่มแน่น</text>
+            <!-- 3 boxplots -->
+            <g transform="translate(40,60)">
+              <line x1="40" y1="100" x2="40" y2="180" stroke="#3b82f6" stroke-width="2"/>
+              <rect x="20" y="120" width="40" height="40" fill="#dbeafe" stroke="#3b82f6"/>
+              <line x1="20" y1="140" x2="60" y2="140" stroke="#1f3a5f" stroke-width="2"/>
+              <text x="40" y="200" text-anchor="middle" font-size="11" fill="#5e6b85">ก.A</text>
+
+              <line x1="130" y1="60" x2="130" y2="140" stroke="#3b82f6" stroke-width="2"/>
+              <rect x="110" y="80" width="40" height="40" fill="#dbeafe" stroke="#3b82f6"/>
+              <line x1="110" y1="100" x2="150" y2="100" stroke="#1f3a5f" stroke-width="2"/>
+              <text x="130" y="200" text-anchor="middle" font-size="11" fill="#5e6b85">ก.B</text>
+
+              <line x1="220" y1="20" x2="220" y2="100" stroke="#3b82f6" stroke-width="2"/>
+              <rect x="200" y="40" width="40" height="40" fill="#dbeafe" stroke="#3b82f6"/>
+              <line x1="200" y1="60" x2="240" y2="60" stroke="#1f3a5f" stroke-width="2"/>
+              <text x="220" y="200" text-anchor="middle" font-size="11" fill="#5e6b85">ก.C</text>
+            </g>
+          </g>
+
+          <!-- Case 2: between ≈ within → small F -->
+          <g>
+            <text x="510" y="20" text-anchor="middle" font-size="14" font-weight="700" fill="#1f3a5f">F ต่ำ: ไม่ปฏิเสธ H0</text>
+            <text x="510" y="38" text-anchor="middle" font-size="11" fill="#5e6b85">กลุ่มต่างกันน้อย ภายในกลุ่มกระจาย</text>
+            <g transform="translate(380,60)">
+              <line x1="40" y1="20" x2="40" y2="180" stroke="#3b82f6" stroke-width="2"/>
+              <rect x="20" y="60" width="40" height="80" fill="#dbeafe" stroke="#3b82f6"/>
+              <line x1="20" y1="100" x2="60" y2="100" stroke="#1f3a5f" stroke-width="2"/>
+              <text x="40" y="200" text-anchor="middle" font-size="11" fill="#5e6b85">ก.A</text>
+
+              <line x1="130" y1="30" x2="130" y2="170" stroke="#3b82f6" stroke-width="2"/>
+              <rect x="110" y="60" width="40" height="80" fill="#dbeafe" stroke="#3b82f6"/>
+              <line x1="110" y1="105" x2="150" y2="105" stroke="#1f3a5f" stroke-width="2"/>
+              <text x="130" y="200" text-anchor="middle" font-size="11" fill="#5e6b85">ก.B</text>
+
+              <line x1="220" y1="40" x2="220" y2="180" stroke="#3b82f6" stroke-width="2"/>
+              <rect x="200" y="70" width="40" height="80" fill="#dbeafe" stroke="#3b82f6"/>
+              <line x1="200" y1="110" x2="240" y2="110" stroke="#1f3a5f" stroke-width="2"/>
+              <text x="220" y="200" text-anchor="middle" font-size="11" fill="#5e6b85">ก.C</text>
+            </g>
+          </g>
+
+          <line x1="350" y1="20" x2="350" y2="270" stroke="#dde4ef" stroke-dasharray="4"/>
+        </svg>
+        <div class="svg-caption">เปรียบเทียบ MSB (ระหว่างกลุ่ม) กับ MSW (ภายในกลุ่ม) ⇒ F-ratio</div>
+      </div>
+
+      <div class="formula-block">F-ratio = MSB / MSW &nbsp;&nbsp; • F ≈ 1 ⇒ ไม่ต่าง • F &gt; 1 + p &lt; α ⇒ มีคู่ที่ต่าง</div>
+
+      <h3>Post-hoc — ใช้เมื่อ ANOVA ปฏิเสธ H0</h3>
+      <div class="v-grid">
+        <div class="v-card green">
+          <b>Tukey HSD</b>
+          <div class="desc">ใช้เมื่อ ความแปรปรวนเป็นเอกพันธ์ (Homogeneous)</div>
+        </div>
+        <div class="v-card accent">
+          <b>Games-Howell ⭐</b>
+          <div class="desc">ใช้เมื่อ ความแปรปรวนไม่เอกพันธ์ + เป็น "ทางเลือกปลอดภัย"</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. Correlation & Chi -->
+    <section class="unit" id="s8">
+      <h2><span class="ico">🔗</span>8. Correlation & Chi-square</h2>
+
+      <h3>ทิศทางและขนาดของ Correlation</h3>
+      <div class="svg-wrap">
+        <svg viewBox="0 0 750 240" xmlns="http://www.w3.org/2000/svg">
+          <!-- r = +1 -->
+          <g>
+            <text x="100" y="20" text-anchor="middle" font-size="13" font-weight="700" fill="#10b981">r = +1</text>
+            <line x1="20" y1="180" x2="180" y2="180" stroke="#5e6b85"/>
+            <line x1="20" y1="180" x2="20" y2="40" stroke="#5e6b85"/>
+            <g fill="#10b981">
+              <circle cx="40" cy="160" r="4"/><circle cx="60" cy="140" r="4"/><circle cx="80" cy="120" r="4"/>
+              <circle cx="100" cy="100" r="4"/><circle cx="120" cy="80" r="4"/><circle cx="140" cy="60" r="4"/>
+              <circle cx="160" cy="50" r="4"/>
+            </g>
+            <text x="100" y="220" text-anchor="middle" font-size="11" fill="#5e6b85">บวกสมบูรณ์</text>
+          </g>
+
+          <!-- r = +0.5 -->
+          <g transform="translate(190,0)">
+            <text x="100" y="20" text-anchor="middle" font-size="13" font-weight="700" fill="#3b82f6">r ≈ +0.5</text>
+            <line x1="20" y1="180" x2="180" y2="180" stroke="#5e6b85"/>
+            <line x1="20" y1="180" x2="20" y2="40" stroke="#5e6b85"/>
+            <g fill="#3b82f6">
+              <circle cx="35" cy="160" r="4"/><circle cx="55" cy="170" r="4"/><circle cx="70" cy="140" r="4"/>
+              <circle cx="90" cy="125" r="4"/><circle cx="105" cy="135" r="4"/><circle cx="125" cy="100" r="4"/>
+              <circle cx="140" cy="80" r="4"/><circle cx="160" cy="65" r="4"/>
+            </g>
+            <text x="100" y="220" text-anchor="middle" font-size="11" fill="#5e6b85">บวกปานกลาง</text>
+          </g>
+
+          <!-- r = 0 -->
+          <g transform="translate(380,0)">
+            <text x="100" y="20" text-anchor="middle" font-size="13" font-weight="700" fill="#5e6b85">r ≈ 0</text>
+            <line x1="20" y1="180" x2="180" y2="180" stroke="#5e6b85"/>
+            <line x1="20" y1="180" x2="20" y2="40" stroke="#5e6b85"/>
+            <g fill="#5e6b85">
+              <circle cx="40" cy="100" r="4"/><circle cx="60" cy="140" r="4"/><circle cx="80" cy="80" r="4"/>
+              <circle cx="100" cy="160" r="4"/><circle cx="120" cy="60" r="4"/><circle cx="140" cy="120" r="4"/>
+              <circle cx="160" cy="90" r="4"/>
+            </g>
+            <text x="100" y="220" text-anchor="middle" font-size="11" fill="#5e6b85">ไม่สัมพันธ์</text>
+          </g>
+
+          <!-- r = -1 -->
+          <g transform="translate(570,0)">
+            <text x="100" y="20" text-anchor="middle" font-size="13" font-weight="700" fill="#ef4444">r = −1</text>
+            <line x1="20" y1="180" x2="180" y2="180" stroke="#5e6b85"/>
+            <line x1="20" y1="180" x2="20" y2="40" stroke="#5e6b85"/>
+            <g fill="#ef4444">
+              <circle cx="40" cy="50" r="4"/><circle cx="60" cy="70" r="4"/><circle cx="80" cy="90" r="4"/>
+              <circle cx="100" cy="110" r="4"/><circle cx="120" cy="130" r="4"/><circle cx="140" cy="150" r="4"/>
+              <circle cx="160" cy="170" r="4"/>
+            </g>
+            <text x="100" y="220" text-anchor="middle" font-size="11" fill="#5e6b85">ลบสมบูรณ์</text>
+          </g>
+        </svg>
+        <div class="svg-caption">เครื่องหมาย = ทิศทาง  |  |r| = ขนาดความสัมพันธ์ (0–1)</div>
+      </div>
+
+      <h3>เกณฑ์ Hinkle ของขนาด</h3>
+      <div class="svg-wrap">
+        <svg viewBox="0 0 700 80" xmlns="http://www.w3.org/2000/svg">
+          <rect x="40" y="20" width="120" height="40" fill="#fee2e2"/>
+          <text x="100" y="42" text-anchor="middle" font-size="12" font-weight="600" fill="#8b0000">ต่ำมาก</text>
+          <text x="100" y="74" text-anchor="middle" font-size="11" fill="#5e6b85">0.10–0.30</text>
+
+          <rect x="160" y="20" width="120" height="40" fill="#fef3c7"/>
+          <text x="220" y="42" text-anchor="middle" font-size="12" font-weight="600" fill="#8a4a00">ต่ำ</text>
+          <text x="220" y="74" text-anchor="middle" font-size="11" fill="#5e6b85">0.31–0.50</text>
+
+          <rect x="280" y="20" width="120" height="40" fill="#dbeafe"/>
+          <text x="340" y="42" text-anchor="middle" font-size="12" font-weight="600" fill="#0a4b80">ปานกลาง</text>
+          <text x="340" y="74" text-anchor="middle" font-size="11" fill="#5e6b85">0.51–0.70</text>
+
+          <rect x="400" y="20" width="120" height="40" fill="#d1fae5"/>
+          <text x="460" y="42" text-anchor="middle" font-size="12" font-weight="600" fill="#0a5a3a">สูง</text>
+          <text x="460" y="74" text-anchor="middle" font-size="11" fill="#5e6b85">0.71–0.90</text>
+
+          <rect x="520" y="20" width="120" height="40" fill="#a7f3d0"/>
+          <text x="580" y="42" text-anchor="middle" font-size="12" font-weight="600" fill="#0a5a3a">สูงมาก</text>
+          <text x="580" y="74" text-anchor="middle" font-size="11" fill="#5e6b85">0.91–1.00</text>
+        </svg>
+      </div>
+
+      <h3>เลือกชนิดของ Correlation ตามมาตรวัด</h3>
+      <table>
+        <tr><th>ชนิด</th><th>เหมาะกับ</th><th>ข้อตกลง</th></tr>
+        <tr><td><b>Pearson's r</b></td><td>Con × Con</td><td>แจกแจงปกติทั้งคู่ + เชิงเส้น</td></tr>
+        <tr><td><b>Spearman's ρ</b></td><td>Ord × Ord, Ord × Con</td><td>Non-parametric (ใช้เมื่อฝ่าฝืน Pearson)</td></tr>
+        <tr><td><b>Phi (φ)</b></td><td>Nom × Nom (2×2)</td><td>True Dichotomy</td></tr>
+        <tr><td><b>Cramer's V</b></td><td>Nom × Nom (&gt; 2×2)</td><td>ใช้แทน φ เมื่อมิติใหญ่</td></tr>
+      </table>
+
+      <div class="callout">
+        <b>Chi-square (χ²):</b> เปรียบเทียบความถี่ Observed กับ Expected — H0: O = E | H1: O ≠ E<br>
+        ⚠ ข้อจำกัด: Expected ในแต่ละ cell ควร ≥ 5
+      </div>
+    </section>
+
+    <!-- 9. Regression -->
+    <section class="unit" id="s9">
+      <h2><span class="ico">📉</span>9. Regression — สมการเส้นตรงทำนาย Y</h2>
+
+      <div class="svg-wrap">
+        <svg viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg">
+          <!-- axes -->
+          <line x1="60" y1="280" x2="560" y2="280" stroke="#5e6b85" stroke-width="2"/>
+          <line x1="60" y1="280" x2="60" y2="40" stroke="#5e6b85" stroke-width="2"/>
+          <text x="300" y="310" text-anchor="middle" font-size="13" font-weight="600" fill="#1f3a5f">X (ปัจจัย เช่น ชั่วโมงเรียน)</text>
+          <text x="20" y="160" text-anchor="middle" font-size="13" font-weight="600" fill="#1f3a5f" transform="rotate(-90, 20, 160)">Y (ผลลัพธ์ เช่น คะแนน)</text>
+
+          <!-- regression line -->
+          <line x1="60" y1="240" x2="540" y2="80" stroke="#10b981" stroke-width="3"/>
+
+          <!-- intercept dot -->
+          <circle cx="60" cy="240" r="7" fill="#f59e0b"/>
+          <text x="35" y="240" text-anchor="end" font-size="11" font-weight="700" fill="#f59e0b">b₀</text>
+          <text x="80" y="265" font-size="11" fill="#5e6b85">Intercept</text>
+
+          <!-- slope triangle -->
+          <line x1="280" y1="160" x2="380" y2="160" stroke="#3b82f6" stroke-width="2" stroke-dasharray="4"/>
+          <line x1="380" y1="160" x2="380" y2="120" stroke="#3b82f6" stroke-width="2" stroke-dasharray="4"/>
+          <text x="330" y="153" text-anchor="middle" font-size="11" fill="#3b82f6">ΔX</text>
+          <text x="395" y="143" font-size="11" fill="#3b82f6">ΔY = b₁</text>
+
+          <!-- data points -->
+          <g fill="#1f3a5f">
+            <circle cx="100" cy="240" r="4"/>
+            <circle cx="150" cy="220" r="4"/>
+            <circle cx="200" cy="200" r="4"/>
+            <circle cx="250" cy="180" r="4"/>
+            <circle cx="300" cy="160" r="4"/>
+            <circle cx="350" cy="135" r="4"/>
+            <circle cx="400" cy="115" r="4"/>
+            <circle cx="450" cy="100" r="4"/>
+            <circle cx="500" cy="90" r="4"/>
+          </g>
+
+          <!-- residual example -->
+          <line x1="200" y1="200" x2="200" y2="183" stroke="#ef4444" stroke-width="2"/>
+          <text x="210" y="195" font-size="10" fill="#ef4444">e (residual)</text>
+
+          <text x="450" y="50" font-size="14" font-weight="700" fill="#10b981">Ŷ = b₀ + b₁X</text>
+        </svg>
+        <div class="svg-caption">b₀ = จุดตัดแกน Y &nbsp;|&nbsp; b₁ = ความชัน &nbsp;|&nbsp; e = ระยะห่างจากเส้น (Residual)</div>
+      </div>
+
+      <h3>ความหมายของ R² (เห็นภาพ)</h3>
+      <div class="svg-wrap">
+        <svg viewBox="0 0 600 180" xmlns="http://www.w3.org/2000/svg">
+          <text x="300" y="20" text-anchor="middle" font-size="14" font-weight="700" fill="#1f3a5f">ตัวอย่าง R² = 0.82</text>
+          <!-- bar -->
+          <rect x="60" y="60" width="480" height="50" fill="#dde4ef" rx="6"/>
+          <rect x="60" y="60" width="394" height="50" fill="#10b981" rx="6"/>
+          <text x="257" y="92" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">82% — Explained</text>
+          <text x="500" y="92" text-anchor="middle" font-size="13" font-weight="700" fill="#1f3a5f">18% — ไม่อธิบาย</text>
+          <text x="60" y="140" font-size="12" fill="#5e6b85">โมเดลอธิบายความแปรปรวนของ Y ได้ 82% — อีก 18% มาจากปัจจัยที่ไม่ได้ใส่ในโมเดล</text>
+        </svg>
+      </div>
+
+      <h3>LINE — Assumptions ของ Linear Regression</h3>
+      <div class="v-grid">
+        <div class="v-card cyan"><b>L</b>inearity – Scatter เป็นเส้นตรง</div>
+        <div class="v-card cyan"><b>I</b>ndependence – Residual เป็นอิสระ</div>
+        <div class="v-card cyan"><b>N</b>ormality – Residual แจกแจงปกติ</div>
+        <div class="v-card cyan"><b>E</b>qual variance – Homoscedasticity</div>
+      </div>
+    </section>
+
+    <!-- 10. Data Analytics 4 ระดับ -->
+    <section class="unit" id="s10">
+      <h2><span class="ico">🏔️</span>10. Data Analytics 4 ระดับ</h2>
+
+      <div class="svg-wrap">
+        <svg viewBox="0 0 700 340" xmlns="http://www.w3.org/2000/svg" font-family="Sarabun, sans-serif">
+          <!-- Pyramid stacked -->
+          <!-- Prescriptive (top) -->
+          <polygon points="280,30 420,30 460,80 240,80" fill="#8b5cf6"/>
+          <text x="350" y="60" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">Prescriptive</text>
+          <text x="500" y="60" font-size="12" fill="#1f3a5f">ควรทำอะไร?</text>
+
+          <!-- Predictive -->
+          <polygon points="240,90 460,90 500,150 200,150" fill="#10b981"/>
+          <text x="350" y="125" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">Predictive</text>
+          <text x="540" y="125" font-size="12" fill="#1f3a5f">จะเกิดอะไรต่อ?</text>
+
+          <!-- Diagnostic -->
+          <polygon points="200,160 500,160 540,220 160,220" fill="#f59e0b"/>
+          <text x="350" y="195" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">Diagnostic</text>
+          <text x="580" y="195" font-size="12" fill="#1f3a5f">ทำไมเกิดขึ้น?</text>
+
+          <!-- Descriptive (base) -->
+          <polygon points="160,230 540,230 580,290 120,290" fill="#3b82f6"/>
+          <text x="350" y="265" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">Descriptive</text>
+          <text x="620" y="265" font-size="12" fill="#1f3a5f">เกิดอะไรขึ้น?</text>
+
+          <!-- Side label: complexity arrow -->
+          <text x="50" y="60" font-size="12" font-weight="700" fill="#1f3a5f">↑ Complex</text>
+          <text x="50" y="280" font-size="12" font-weight="700" fill="#1f3a5f">↓ Simple</text>
+
+          <!-- Value -->
+          <text x="60" y="170" font-size="13" font-weight="700" fill="#1f3a5f" transform="rotate(-90, 60, 170)">Value</text>
+
+          <!-- Insight notes -->
+          <text x="350" y="320" text-anchor="middle" font-size="11" fill="#5e6b85">การข้ามจาก Descriptive ไป Prescriptive โดยไม่ผ่านวินิจฉัย = ตัดสินใจผิด!</text>
+        </svg>
+        <div class="svg-caption">Pyramid of Analytics — ยิ่งสูงยิ่งซับซ้อน แต่ก็ยิ่งสร้าง value มาก</div>
+      </div>
+
+      <table>
+        <tr><th>ระดับ</th><th>ตัวอย่าง (ห้องเรียน)</th><th>เครื่องมือ</th></tr>
+        <tr><td><span class="badge des">Descriptive</span></td><td>อัตราการขาดเรียนสัปดาห์ 5 = 25%</td><td>Mean, %, Histogram</td></tr>
+        <tr><td><span class="badge dia">Diagnostic</span></td><td>"พื้นฐานต่ำ" Importance = 0.81</td><td>Regression, Decision Tree, PI Matrix</td></tr>
+        <tr><td><span class="badge pre">Predictive</span></td><td>ขาดเรียน &gt; 5 ครั้ง โอกาสตก 70%</td><td>ML, Logistic Regression</td></tr>
+        <tr><td><span class="badge pres">Prescriptive</span></td><td>เสริมพื้นฐานก่อนเริ่มบทใหม่</td><td>Decision Optimization</td></tr>
+      </table>
+    </section>
+
+    <!-- 11. Diagnostic -->
+    <section class="unit" id="s11">
+      <h2><span class="ico">🔬</span>11. Diagnostic Analytics</h2>
+
+      <h3>Pareto Chart 80/20</h3>
+      <div class="svg-wrap">
+        <svg viewBox="0 0 700 280" xmlns="http://www.w3.org/2000/svg">
+          <line x1="60" y1="240" x2="660" y2="240" stroke="#5e6b85" stroke-width="2"/>
+          <line x1="60" y1="240" x2="60" y2="20" stroke="#5e6b85" stroke-width="2"/>
+          <text x="20" y="135" font-size="12" fill="#5e6b85" transform="rotate(-90, 20, 135)">% ของปัญหา</text>
+
+          <!-- Bars -->
+          <g>
+            <rect x="80" y="80" width="80" height="160" fill="#ef4444"/>
+            <text x="120" y="70" text-anchor="middle" font-size="12" font-weight="700" fill="#1f3a5f">40%</text>
+            <text x="120" y="260" text-anchor="middle" font-size="11" fill="#5e6b85">ขาดเรียน</text>
+
+            <rect x="180" y="92" width="80" height="148" fill="#f59e0b"/>
+            <text x="220" y="82" text-anchor="middle" font-size="12" font-weight="700" fill="#1f3a5f">37%</text>
+            <text x="220" y="260" text-anchor="middle" font-size="11" fill="#5e6b85">ไม่ส่งงาน</text>
+
+            <rect x="280" y="200" width="80" height="40" fill="#3b82f6"/>
+            <text x="320" y="190" text-anchor="middle" font-size="12" font-weight="700" fill="#1f3a5f">10%</text>
+            <text x="320" y="260" text-anchor="middle" font-size="11" fill="#5e6b85">พื้นฐานอ่อน</text>
+
+            <rect x="380" y="208" width="80" height="32" fill="#5e6b85"/>
+            <text x="420" y="200" text-anchor="middle" font-size="12" font-weight="700" fill="#1f3a5f">8%</text>
+            <text x="420" y="260" text-anchor="middle" font-size="11" fill="#5e6b85">ไม่มีส่วนร่วม</text>
+
+            <rect x="480" y="216" width="80" height="24" fill="#5e6b85"/>
+            <text x="520" y="208" text-anchor="middle" font-size="12" font-weight="700" fill="#1f3a5f">6%</text>
+            <text x="520" y="260" text-anchor="middle" font-size="11" fill="#5e6b85">สอบตก</text>
+          </g>
+
+          <!-- Cumulative line -->
+          <polyline points="120,80 220,16 320,40 420,56 520,68" stroke="#10b981" stroke-width="2.5" fill="none" stroke-dasharray="3"/>
+          <circle cx="120" cy="80" r="4" fill="#10b981"/>
+          <circle cx="220" cy="16" r="4" fill="#10b981"/>
+          <circle cx="320" cy="40" r="4" fill="#10b981"/>
+          <text x="240" y="14" font-size="11" fill="#10b981" font-weight="700">77% (สะสม)</text>
+
+          <!-- 80/20 line -->
+          <line x1="60" y1="48" x2="660" y2="48" stroke="#ef4444" stroke-width="1" stroke-dasharray="6"/>
+          <text x="660" y="44" text-anchor="end" font-size="11" fill="#ef4444">เกณฑ์ 80%</text>
+        </svg>
+        <div class="svg-caption">ปัญหา 2 อันดับแรก (40% + 37% = 77%) ครอบคลุมเกือบ 80% ของปัญหาทั้งหมด → แก้ก่อน!</div>
+      </div>
+
+      <h3>Fishbone Diagram (Ishikawa)</h3>
+      <div class="svg-wrap">
+        <svg viewBox="0 0 800 320" xmlns="http://www.w3.org/2000/svg" font-family="Sarabun, sans-serif">
+          <!-- Spine -->
+          <line x1="50" y1="160" x2="650" y2="160" stroke="#1f3a5f" stroke-width="3"/>
+          <polygon points="650,160 670,150 670,170" fill="#1f3a5f"/>
+          <rect x="670" y="135" width="120" height="50" rx="8" fill="#ef4444"/>
+          <text x="730" y="158" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">ขาดเรียน</text>
+          <text x="730" y="176" text-anchor="middle" font-size="11" fill="#fff">บ่อย</text>
+
+          <!-- Top branches -->
+          <g stroke="#3b82f6" stroke-width="2">
+            <line x1="180" y1="160" x2="160" y2="60"/>
+            <line x1="380" y1="160" x2="360" y2="60"/>
+          </g>
+          <text x="155" y="55" font-size="13" font-weight="700" fill="#3b82f6">นักเรียน</text>
+          <text x="355" y="55" font-size="13" font-weight="700" fill="#3b82f6">ครู</text>
+
+          <!-- sub-branches top -->
+          <g stroke="#3b82f6" stroke-width="1">
+            <line x1="170" y1="105" x2="100" y2="105"/>
+            <line x1="170" y1="80" x2="100" y2="80"/>
+            <line x1="370" y1="105" x2="300" y2="105"/>
+            <line x1="370" y1="80" x2="300" y2="80"/>
+          </g>
+          <text x="100" y="100" font-size="11" fill="#1d2433">พื้นฐานอ่อน</text>
+          <text x="100" y="75" font-size="11" fill="#1d2433">แรงจูงใจต่ำ</text>
+          <text x="240" y="100" font-size="11" fill="#1d2433">วิธีสอน</text>
+          <text x="240" y="75" font-size="11" fill="#1d2433">การสื่อสาร</text>
+
+          <!-- Bottom branches -->
+          <g stroke="#3b82f6" stroke-width="2">
+            <line x1="180" y1="160" x2="160" y2="260"/>
+            <line x1="380" y1="160" x2="360" y2="260"/>
+          </g>
+          <text x="135" y="285" font-size="13" font-weight="700" fill="#3b82f6">ครอบครัว</text>
+          <text x="345" y="285" font-size="13" font-weight="700" fill="#3b82f6">เพื่อน</text>
+
+          <g stroke="#3b82f6" stroke-width="1">
+            <line x1="170" y1="215" x2="100" y2="215"/>
+            <line x1="170" y1="240" x2="100" y2="240"/>
+            <line x1="370" y1="215" x2="300" y2="215"/>
+            <line x1="370" y1="240" x2="300" y2="240"/>
+          </g>
+          <text x="80" y="220" font-size="11" fill="#1d2433">ฐานะ</text>
+          <text x="80" y="245" font-size="11" fill="#1d2433">การสนับสนุน</text>
+          <text x="280" y="220" font-size="11" fill="#1d2433">การรังแก</text>
+          <text x="240" y="245" font-size="11" fill="#1d2433">อิทธิพลเพื่อน</text>
+        </svg>
+        <div class="svg-caption">หาสาเหตุปัญหา "ขาดเรียนบ่อย" จาก 4 ก้านหลัก: นักเรียน, ครู, ครอบครัว, เพื่อน</div>
+      </div>
+
+      <h3>Performance–Importance Matrix</h3>
+      <div class="svg-wrap">
+        <svg viewBox="0 0 600 460" xmlns="http://www.w3.org/2000/svg" font-family="Sarabun, sans-serif">
+          <!-- Quadrants -->
+          <rect x="60" y="40" width="240" height="180" fill="#dbeafe" opacity="0.5"/>
+          <rect x="300" y="40" width="240" height="180" fill="#fee2e2" opacity="0.7"/>
+          <rect x="60" y="220" width="240" height="180" fill="#f3f4f6" opacity="0.5"/>
+          <rect x="300" y="220" width="240" height="180" fill="#fef3c7" opacity="0.5"/>
+
+          <!-- Axes -->
+          <line x1="60" y1="400" x2="540" y2="400" stroke="#1f3a5f" stroke-width="2"/>
+          <line x1="60" y1="40" x2="60" y2="400" stroke="#1f3a5f" stroke-width="2"/>
+          <line x1="300" y1="40" x2="300" y2="400" stroke="#5e6b85" stroke-dasharray="4"/>
+          <line x1="60" y1="220" x2="540" y2="220" stroke="#5e6b85" stroke-dasharray="4"/>
+
+          <!-- Labels -->
+          <text x="300" y="430" text-anchor="middle" font-size="13" font-weight="700" fill="#1f3a5f">Importance →</text>
+          <text x="20" y="220" font-size="13" font-weight="700" fill="#1f3a5f" transform="rotate(-90, 20, 220)">Performance →</text>
+
+          <!-- Quadrant labels -->
+          <text x="180" y="65" text-anchor="middle" font-size="13" font-weight="700" fill="#0a4b80">Imp ต่ำ / Perf สูง</text>
+          <text x="180" y="83" text-anchor="middle" font-size="11" fill="#5e6b85">Less Priority</text>
+
+          <text x="420" y="65" text-anchor="middle" font-size="14" font-weight="800" fill="#ef4444">🔥 CRITICAL ZONE</text>
+          <text x="420" y="83" text-anchor="middle" font-size="11" fill="#8b0000">เร่งแก้ไขก่อน!</text>
+
+          <text x="180" y="245" text-anchor="middle" font-size="13" font-weight="700" fill="#5e6b85">Imp ต่ำ / Perf ต่ำ</text>
+          <text x="180" y="263" text-anchor="middle" font-size="11" fill="#5e6b85">Monitor</text>
+
+          <text x="420" y="245" text-anchor="middle" font-size="13" font-weight="700" fill="#8a4a00">Imp สูง / Perf ต่ำ</text>
+          <text x="420" y="263" text-anchor="middle" font-size="11" fill="#5e6b85">Watch Zone</text>
+
+          <!-- Real example dots -->
+          <circle cx="450" cy="80" r="9" fill="#ef4444" stroke="#fff" stroke-width="2"/>
+          <text x="463" y="84" font-size="11" font-weight="700" fill="#1f3a5f">Low_BasicKnowledge (0.81, 53%)</text>
+
+          <circle cx="380" cy="180" r="8" fill="#f59e0b" stroke="#fff" stroke-width="2"/>
+          <text x="393" y="184" font-size="11" font-weight="700" fill="#1f3a5f">No_AcademicGoal (0.62, 33%)</text>
+
+          <circle cx="290" cy="270" r="8" fill="#5e6b85" stroke="#fff" stroke-width="2"/>
+          <text x="303" y="274" font-size="11" font-weight="700" fill="#1f3a5f">Low_Interaction (0.52, 25%)</text>
+        </svg>
+        <div class="svg-caption">ตำแหน่งของ 3 ปัจจัยใน PI Matrix — Low_BasicKnowledge อยู่ใน Critical Zone ⇒ แก้ก่อน</div>
+      </div>
+    </section>
+
+    <!-- 12. Predictive -->
+    <section class="unit" id="s12">
+      <h2><span class="ico">🔮</span>12. Predictive Analytics & Model Performance</h2>
+
+      <h3>กระบวนการสร้างโมเดลทำนาย</h3>
+      <div class="svg-wrap">
+        <svg viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg" font-family="Sarabun, sans-serif">
+          <g>
+            <!-- Stage 1 -->
+            <rect x="20" y="60" width="120" height="60" rx="10" fill="#3b82f6"/>
+            <text x="80" y="85" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">📥</text>
+            <text x="80" y="105" text-anchor="middle" font-size="12" fill="#fff">Data + Features</text>
+
+            <text x="155" y="95" font-size="20" fill="#5e6b85">→</text>
+
+            <!-- Stage 2 -->
+            <rect x="170" y="60" width="120" height="60" rx="10" fill="#8b5cf6"/>
+            <text x="230" y="85" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">✂️</text>
+            <text x="230" y="105" text-anchor="middle" font-size="12" fill="#fff">Train / Test Split</text>
+
+            <text x="305" y="95" font-size="20" fill="#5e6b85">→</text>
+
+            <!-- Stage 3 -->
+            <rect x="320" y="60" width="120" height="60" rx="10" fill="#10b981"/>
+            <text x="380" y="85" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">🛠️</text>
+            <text x="380" y="105" text-anchor="middle" font-size="12" fill="#fff">Build Model</text>
+
+            <text x="455" y="95" font-size="20" fill="#5e6b85">→</text>
+
+            <!-- Stage 4 -->
+            <rect x="470" y="60" width="120" height="60" rx="10" fill="#f59e0b"/>
+            <text x="530" y="85" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">📏</text>
+            <text x="530" y="105" text-anchor="middle" font-size="12" fill="#fff">Evaluate</text>
+
+            <text x="605" y="95" font-size="20" fill="#5e6b85">→</text>
+
+            <!-- Stage 5 -->
+            <rect x="620" y="60" width="120" height="60" rx="10" fill="#ef4444"/>
+            <text x="680" y="85" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">🎯</text>
+            <text x="680" y="105" text-anchor="middle" font-size="12" fill="#fff">Deploy / Predict</text>
+          </g>
+          <text x="400" y="160" text-anchor="middle" font-size="12" fill="#5e6b85">หากประสิทธิภาพไม่ดี → ปรับ features / algorithm / hyperparameters</text>
+        </svg>
+      </div>
+
+      <h3>Confusion Matrix — Interactive Calculator</h3>
+      <div class="svg-wrap">
+        <svg viewBox="0 0 500 240" xmlns="http://www.w3.org/2000/svg" font-family="Sarabun, sans-serif">
+          <!-- header row -->
+          <rect x="0" y="0" width="500" height="40" fill="#1f3a5f"/>
+          <text x="250" y="25" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">Predicted</text>
+
+          <rect x="0" y="40" width="100" height="40" fill="#fff" stroke="#dde4ef"/>
+          <rect x="100" y="40" width="200" height="40" fill="#3b82f6"/>
+          <text x="200" y="65" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">Yes (Pos)</text>
+          <rect x="300" y="40" width="200" height="40" fill="#3b82f6"/>
+          <text x="400" y="65" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">No (Neg)</text>
+
+          <!-- Row 1 -->
+          <rect x="0" y="80" width="100" height="80" fill="#3b82f6"/>
+          <text x="50" y="115" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">Actual</text>
+          <text x="50" y="135" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">Yes</text>
+
+          <rect x="100" y="80" width="200" height="80" fill="#d1fae5" stroke="#10b981" stroke-width="2"/>
+          <text x="200" y="115" text-anchor="middle" font-size="20" font-weight="800" fill="#0a5a3a">TP</text>
+          <text x="200" y="140" text-anchor="middle" font-size="12" fill="#0a5a3a">True Positive</text>
+
+          <rect x="300" y="80" width="200" height="80" fill="#fee2e2" stroke="#ef4444" stroke-width="2"/>
+          <text x="400" y="115" text-anchor="middle" font-size="20" font-weight="800" fill="#8b0000">FN</text>
+          <text x="400" y="140" text-anchor="middle" font-size="12" fill="#8b0000">False Negative (พลาดของจริง)</text>
+
+          <!-- Row 2 -->
+          <rect x="0" y="160" width="100" height="80" fill="#3b82f6"/>
+          <text x="50" y="195" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">Actual</text>
+          <text x="50" y="215" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">No</text>
+
+          <rect x="100" y="160" width="200" height="80" fill="#fee2e2" stroke="#ef4444" stroke-width="2"/>
+          <text x="200" y="195" text-anchor="middle" font-size="20" font-weight="800" fill="#8b0000">FP</text>
+          <text x="200" y="220" text-anchor="middle" font-size="12" fill="#8b0000">False Positive (ตื่นตูม)</text>
+
+          <rect x="300" y="160" width="200" height="80" fill="#d1fae5" stroke="#10b981" stroke-width="2"/>
+          <text x="400" y="195" text-anchor="middle" font-size="20" font-weight="800" fill="#0a5a3a">TN</text>
+          <text x="400" y="220" text-anchor="middle" font-size="12" fill="#0a5a3a">True Negative</text>
+        </svg>
+      </div>
+
+      <div class="widget">
+        <h4>🧮 ลองใส่ค่า — คำนวณ Accuracy / Precision / Recall / F1 อัตโนมัติ</h4>
+        <div style="display:grid; grid-template-columns: repeat(4,1fr); gap:8px; margin:10px 0">
+          <label>TP <input type="number" id="cm_tp" value="93" min="0" oninput="calcCM()"/></label>
+          <label>FN <input type="number" id="cm_fn" value="2" min="0" oninput="calcCM()"/></label>
+          <label>FP <input type="number" id="cm_fp" value="4" min="0" oninput="calcCM()"/></label>
+          <label>TN <input type="number" id="cm_tn" value="1" min="0" oninput="calcCM()"/></label>
+        </div>
+        <div class="out" id="cm_out"></div>
+      </div>
+
+      <h3>Overfitting / Underfitting / Good Fit</h3>
+      <div class="svg-wrap">
+        <svg viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg">
+          <!-- Underfit -->
+          <g>
+            <text x="130" y="20" text-anchor="middle" font-size="13" font-weight="700" fill="#ef4444">Underfit</text>
+            <text x="130" y="38" text-anchor="middle" font-size="11" fill="#5e6b85">เรียนรู้น้อยเกิน</text>
+            <line x1="40" y1="180" x2="220" y2="180" stroke="#5e6b85"/>
+            <line x1="40" y1="180" x2="40" y2="50" stroke="#5e6b85"/>
+            <g fill="#1f3a5f">
+              <circle cx="60" cy="160" r="3"/><circle cx="80" cy="120" r="3"/>
+              <circle cx="100" cy="100" r="3"/><circle cx="120" cy="80" r="3"/>
+              <circle cx="140" cy="120" r="3"/><circle cx="160" cy="70" r="3"/>
+              <circle cx="180" cy="60" r="3"/><circle cx="200" cy="50" r="3"/>
+            </g>
+            <line x1="40" y1="170" x2="220" y2="80" stroke="#ef4444" stroke-width="2"/>
+          </g>
+
+          <!-- Good fit -->
+          <g transform="translate(260,0)">
+            <text x="130" y="20" text-anchor="middle" font-size="13" font-weight="700" fill="#10b981">Good Fit</text>
+            <text x="130" y="38" text-anchor="middle" font-size="11" fill="#5e6b85">พอดี</text>
+            <line x1="40" y1="180" x2="220" y2="180" stroke="#5e6b85"/>
+            <line x1="40" y1="180" x2="40" y2="50" stroke="#5e6b85"/>
+            <g fill="#1f3a5f">
+              <circle cx="60" cy="160" r="3"/><circle cx="80" cy="120" r="3"/>
+              <circle cx="100" cy="100" r="3"/><circle cx="120" cy="80" r="3"/>
+              <circle cx="140" cy="120" r="3"/><circle cx="160" cy="70" r="3"/>
+              <circle cx="180" cy="60" r="3"/><circle cx="200" cy="50" r="3"/>
+            </g>
+            <path d="M 40,170 Q 130,90 220,55" stroke="#10b981" stroke-width="2.5" fill="none"/>
+          </g>
+
+          <!-- Overfit -->
+          <g transform="translate(520,0)">
+            <text x="130" y="20" text-anchor="middle" font-size="13" font-weight="700" fill="#ef4444">Overfit</text>
+            <text x="130" y="38" text-anchor="middle" font-size="11" fill="#5e6b85">จำ Noise มากเกิน</text>
+            <line x1="40" y1="180" x2="220" y2="180" stroke="#5e6b85"/>
+            <line x1="40" y1="180" x2="40" y2="50" stroke="#5e6b85"/>
+            <g fill="#1f3a5f">
+              <circle cx="60" cy="160" r="3"/><circle cx="80" cy="120" r="3"/>
+              <circle cx="100" cy="100" r="3"/><circle cx="120" cy="80" r="3"/>
+              <circle cx="140" cy="120" r="3"/><circle cx="160" cy="70" r="3"/>
+              <circle cx="180" cy="60" r="3"/><circle cx="200" cy="50" r="3"/>
+            </g>
+            <path d="M 60,160 L 80,120 L 100,100 L 120,80 L 140,120 L 160,70 L 180,60 L 200,50" stroke="#ef4444" stroke-width="2" fill="none"/>
+          </g>
+        </svg>
+        <div class="svg-caption">Underfit (เส้นง่ายเกิน) | Good Fit (พอดี) | Overfit (เส้นบิดตามทุกจุด)</div>
+      </div>
+    </section>
+
+    <!-- 13. Decision Tree -->
+    <section class="unit" id="s13">
+      <h2><span class="ico">🌳</span>13. Decision Tree</h2>
+
+      <div class="svg-wrap">
+        <svg viewBox="0 0 700 360" xmlns="http://www.w3.org/2000/svg" font-family="Sarabun, sans-serif">
+          <!-- Root -->
+          <rect x="280" y="20" width="140" height="50" rx="10" fill="#1f3a5f"/>
+          <text x="350" y="42" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">Pre-test ≤ 12?</text>
+          <text x="350" y="60" text-anchor="middle" font-size="11" fill="#fff">(IG สูงสุด)</text>
+
+          <!-- Lines to children -->
+          <line x1="320" y1="70" x2="180" y2="120" stroke="#5e6b85" stroke-width="2"/>
+          <text x="220" y="98" font-size="11" font-weight="600" fill="#5e6b85">Yes</text>
+          <line x1="380" y1="70" x2="520" y2="120" stroke="#5e6b85" stroke-width="2"/>
+          <text x="465" y="98" font-size="11" font-weight="600" fill="#5e6b85">No</text>
+
+          <!-- Left child -->
+          <rect x="100" y="120" width="160" height="50" rx="10" fill="#3b82f6"/>
+          <text x="180" y="142" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">Attendance &lt; 70%?</text>
+
+          <line x1="140" y1="170" x2="80" y2="220" stroke="#5e6b85" stroke-width="2"/>
+          <text x="100" y="200" font-size="11" font-weight="600" fill="#5e6b85">Yes</text>
+          <line x1="220" y1="170" x2="280" y2="220" stroke="#5e6b85" stroke-width="2"/>
+          <text x="265" y="200" font-size="11" font-weight="600" fill="#5e6b85">No</text>
+
+          <rect x="20" y="220" width="120" height="60" rx="10" fill="#fee2e2" stroke="#ef4444" stroke-width="2"/>
+          <text x="80" y="245" text-anchor="middle" font-size="14" font-weight="700" fill="#8b0000">Fail</text>
+          <text x="80" y="265" text-anchor="middle" font-size="11" fill="#8b0000">88% เสี่ยงตก</text>
+
+          <rect x="220" y="220" width="120" height="60" rx="10" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+          <text x="280" y="245" text-anchor="middle" font-size="14" font-weight="700" fill="#8a4a00">Watch</text>
+          <text x="280" y="265" text-anchor="middle" font-size="11" fill="#8a4a00">เฝ้ามอง</text>
+
+          <!-- Right child -->
+          <rect x="440" y="120" width="160" height="50" rx="10" fill="#3b82f6"/>
+          <text x="520" y="142" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">Self_Study ≥ 5h?</text>
+
+          <line x1="480" y1="170" x2="420" y2="220" stroke="#5e6b85" stroke-width="2"/>
+          <text x="440" y="200" font-size="11" font-weight="600" fill="#5e6b85">Yes</text>
+          <line x1="560" y1="170" x2="620" y2="220" stroke="#5e6b85" stroke-width="2"/>
+          <text x="605" y="200" font-size="11" font-weight="600" fill="#5e6b85">No</text>
+
+          <rect x="360" y="220" width="120" height="60" rx="10" fill="#d1fae5" stroke="#10b981" stroke-width="2"/>
+          <text x="420" y="245" text-anchor="middle" font-size="14" font-weight="700" fill="#0a5a3a">Pass</text>
+          <text x="420" y="265" text-anchor="middle" font-size="11" fill="#0a5a3a">95% ผ่าน</text>
+
+          <rect x="560" y="220" width="120" height="60" rx="10" fill="#d1fae5" stroke="#10b981" stroke-width="2"/>
+          <text x="620" y="245" text-anchor="middle" font-size="14" font-weight="700" fill="#0a5a3a">Pass</text>
+          <text x="620" y="265" text-anchor="middle" font-size="11" fill="#0a5a3a">75% ผ่าน</text>
+
+          <text x="350" y="320" text-anchor="middle" font-size="13" fill="#5e6b85">Root = ตัวแปรที่ <b>Information Gain (IG) สูงสุด</b></text>
+          <text x="350" y="340" text-anchor="middle" font-size="11" fill="#5e6b85">IG = En(parent) − Σ P(child) · En(child)</text>
+        </svg>
+        <div class="svg-caption">ตัวอย่าง Decision Tree ทำนายการสอบผ่าน — เลือกตัวแปรที่ Split ได้ชัดเจนที่สุด</div>
+      </div>
+
+      <h3>Entropy — ความบริสุทธิ์ของกลุ่ม</h3>
+      <div class="svg-wrap">
+        <svg viewBox="0 0 600 160" xmlns="http://www.w3.org/2000/svg">
+          <!-- En = 0 -->
+          <g>
+            <text x="100" y="20" text-anchor="middle" font-size="13" font-weight="700" fill="#10b981">En = 0 (pure)</text>
+            <circle cx="60" cy="80" r="14" fill="#10b981"/><circle cx="100" cy="80" r="14" fill="#10b981"/>
+            <circle cx="140" cy="80" r="14" fill="#10b981"/><circle cx="80" cy="115" r="14" fill="#10b981"/>
+            <circle cx="120" cy="115" r="14" fill="#10b981"/>
+            <text x="100" y="150" text-anchor="middle" font-size="11" fill="#5e6b85">ชนิดเดียวล้วน</text>
+          </g>
+          <!-- En = 0.5 -->
+          <g transform="translate(200,0)">
+            <text x="100" y="20" text-anchor="middle" font-size="13" font-weight="700" fill="#f59e0b">En ≈ 0.7</text>
+            <circle cx="60" cy="80" r="14" fill="#10b981"/><circle cx="100" cy="80" r="14" fill="#10b981"/>
+            <circle cx="140" cy="80" r="14" fill="#ef4444"/><circle cx="80" cy="115" r="14" fill="#10b981"/>
+            <circle cx="120" cy="115" r="14" fill="#ef4444"/>
+            <text x="100" y="150" text-anchor="middle" font-size="11" fill="#5e6b85">ผสมเล็กน้อย</text>
+          </g>
+          <!-- En = 1 -->
+          <g transform="translate(400,0)">
+            <text x="100" y="20" text-anchor="middle" font-size="13" font-weight="700" fill="#ef4444">En = 1 (impure)</text>
+            <circle cx="60" cy="80" r="14" fill="#10b981"/><circle cx="100" cy="80" r="14" fill="#ef4444"/>
+            <circle cx="140" cy="80" r="14" fill="#10b981"/><circle cx="80" cy="115" r="14" fill="#ef4444"/>
+            <circle cx="120" cy="115" r="14" fill="#ef4444"/>
+            <text x="100" y="150" text-anchor="middle" font-size="11" fill="#5e6b85">ผสม 50:50</text>
+          </g>
+        </svg>
+        <div class="svg-caption">เป้าหมายของ Decision Tree: เลือก Split ที่ลด Entropy ลง (เพิ่ม IG สูงสุด)</div>
+      </div>
+    </section>
+
+    <!-- 14. Validation & SMOTE -->
+    <section class="unit" id="s14">
+      <h2><span class="ico">⚖️</span>14. Validation & Imbalanced Data (SMOTE)</h2>
+
+      <h3>Split Validation vs k-Fold Cross Validation</h3>
+      <div class="svg-wrap">
+        <svg viewBox="0 0 800 240" xmlns="http://www.w3.org/2000/svg" font-family="Sarabun, sans-serif">
+          <!-- Split -->
+          <text x="200" y="25" text-anchor="middle" font-size="14" font-weight="700" fill="#1f3a5f">Split Validation (60:40)</text>
+          <rect x="40" y="50" width="240" height="40" fill="#10b981"/>
+          <text x="160" y="75" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">Training (60%)</text>
+          <rect x="280" y="50" width="80" height="40" fill="#f59e0b"/>
+          <text x="320" y="75" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">Test (40%)</text>
+
+          <!-- Cross Validation 5-Fold -->
+          <text x="600" y="25" text-anchor="middle" font-size="14" font-weight="700" fill="#1f3a5f">5-Fold Cross Validation</text>
+          <g font-size="10">
+            <!-- Fold 1 -->
+            <rect x="430" y="40" width="60" height="22" fill="#f59e0b"/>
+            <rect x="490" y="40" width="60" height="22" fill="#10b981"/>
+            <rect x="550" y="40" width="60" height="22" fill="#10b981"/>
+            <rect x="610" y="40" width="60" height="22" fill="#10b981"/>
+            <rect x="670" y="40" width="60" height="22" fill="#10b981"/>
+            <text x="410" y="56" text-anchor="end" font-size="10" fill="#5e6b85">Fold 1</text>
+
+            <rect x="430" y="65" width="60" height="22" fill="#10b981"/>
+            <rect x="490" y="65" width="60" height="22" fill="#f59e0b"/>
+            <rect x="550" y="65" width="60" height="22" fill="#10b981"/>
+            <rect x="610" y="65" width="60" height="22" fill="#10b981"/>
+            <rect x="670" y="65" width="60" height="22" fill="#10b981"/>
+            <text x="410" y="81" text-anchor="end" font-size="10" fill="#5e6b85">Fold 2</text>
+
+            <rect x="430" y="90" width="60" height="22" fill="#10b981"/>
+            <rect x="490" y="90" width="60" height="22" fill="#10b981"/>
+            <rect x="550" y="90" width="60" height="22" fill="#f59e0b"/>
+            <rect x="610" y="90" width="60" height="22" fill="#10b981"/>
+            <rect x="670" y="90" width="60" height="22" fill="#10b981"/>
+            <text x="410" y="106" text-anchor="end" font-size="10" fill="#5e6b85">Fold 3</text>
+
+            <rect x="430" y="115" width="60" height="22" fill="#10b981"/>
+            <rect x="490" y="115" width="60" height="22" fill="#10b981"/>
+            <rect x="550" y="115" width="60" height="22" fill="#10b981"/>
+            <rect x="610" y="115" width="60" height="22" fill="#f59e0b"/>
+            <rect x="670" y="115" width="60" height="22" fill="#10b981"/>
+            <text x="410" y="131" text-anchor="end" font-size="10" fill="#5e6b85">Fold 4</text>
+
+            <rect x="430" y="140" width="60" height="22" fill="#10b981"/>
+            <rect x="490" y="140" width="60" height="22" fill="#10b981"/>
+            <rect x="550" y="140" width="60" height="22" fill="#10b981"/>
+            <rect x="610" y="140" width="60" height="22" fill="#10b981"/>
+            <rect x="670" y="140" width="60" height="22" fill="#f59e0b"/>
+            <text x="410" y="156" text-anchor="end" font-size="10" fill="#5e6b85">Fold 5</text>
+          </g>
+
+          <!-- Legend -->
+          <rect x="40" y="200" width="20" height="14" fill="#10b981"/>
+          <text x="65" y="212" font-size="12" fill="#1d2433">Training</text>
+          <rect x="140" y="200" width="20" height="14" fill="#f59e0b"/>
+          <text x="165" y="212" font-size="12" fill="#1d2433">Testing</text>
+        </svg>
+        <div class="svg-caption">k-Fold หมุนเวียน Test ทุกชุด ⇒ ลด bias จากการแบ่งครั้งเดียว</div>
+      </div>
+
+      <h3>Imbalanced Data → SMOTE</h3>
+      <div class="svg-wrap">
+        <svg viewBox="0 0 700 240" xmlns="http://www.w3.org/2000/svg" font-family="Sarabun, sans-serif">
+          <!-- Before -->
+          <text x="170" y="20" text-anchor="middle" font-size="14" font-weight="700" fill="#ef4444">ก่อน SMOTE (Imbalanced)</text>
+          <line x1="40" y1="200" x2="320" y2="200" stroke="#5e6b85"/>
+          <line x1="40" y1="200" x2="40" y2="40" stroke="#5e6b85"/>
+          <!-- Pass: many -->
+          <g fill="#10b981">
+            <circle cx="60" cy="180" r="4"/><circle cx="80" cy="170" r="4"/><circle cx="100" cy="180" r="4"/>
+            <circle cx="120" cy="160" r="4"/><circle cx="140" cy="170" r="4"/><circle cx="160" cy="150" r="4"/>
+            <circle cx="180" cy="170" r="4"/><circle cx="200" cy="160" r="4"/><circle cx="220" cy="180" r="4"/>
+            <circle cx="240" cy="170" r="4"/><circle cx="260" cy="160" r="4"/><circle cx="280" cy="150" r="4"/>
+            <circle cx="70" cy="160" r="4"/><circle cx="90" cy="155" r="4"/><circle cx="170" cy="180" r="4"/>
+            <circle cx="190" cy="180" r="4"/><circle cx="210" cy="155" r="4"/><circle cx="230" cy="155" r="4"/>
+          </g>
+          <!-- Fail: few -->
+          <g fill="#ef4444">
+            <circle cx="100" cy="80" r="5"/><circle cx="160" cy="60" r="5"/>
+          </g>
+          <text x="170" y="220" text-anchor="middle" font-size="11" fill="#5e6b85">Pass (เขียว) มาก / Fail (แดง) น้อยมาก</text>
+
+          <!-- Arrow -->
+          <text x="350" y="125" font-size="22" fill="#5e6b85">→</text>
+
+          <!-- After -->
+          <text x="500" y="20" text-anchor="middle" font-size="14" font-weight="700" fill="#10b981">หลัง SMOTE (Balanced)</text>
+          <line x1="380" y1="200" x2="660" y2="200" stroke="#5e6b85"/>
+          <line x1="380" y1="200" x2="380" y2="40" stroke="#5e6b85"/>
+          <g fill="#10b981">
+            <circle cx="400" cy="180" r="4"/><circle cx="420" cy="170" r="4"/><circle cx="440" cy="180" r="4"/>
+            <circle cx="460" cy="160" r="4"/><circle cx="480" cy="170" r="4"/><circle cx="500" cy="150" r="4"/>
+            <circle cx="520" cy="170" r="4"/><circle cx="540" cy="160" r="4"/><circle cx="560" cy="180" r="4"/>
+            <circle cx="580" cy="170" r="4"/><circle cx="600" cy="160" r="4"/><circle cx="620" cy="150" r="4"/>
+          </g>
+          <g fill="#ef4444">
+            <circle cx="400" cy="80" r="5"/><circle cx="420" cy="100" r="5"/><circle cx="440" cy="70" r="5"/>
+            <circle cx="460" cy="90" r="5"/><circle cx="480" cy="60" r="5"/><circle cx="500" cy="100" r="5"/>
+            <circle cx="520" cy="80" r="5"/><circle cx="540" cy="100" r="5"/><circle cx="560" cy="70" r="5"/>
+            <circle cx="580" cy="90" r="5"/><circle cx="600" cy="100" r="5"/><circle cx="620" cy="80" r="5"/>
+            <circle cx="430" cy="85" r="5" fill="#ef4444" opacity="0.5"/>
+            <circle cx="470" cy="95" r="5" fill="#ef4444" opacity="0.5"/>
+            <circle cx="510" cy="75" r="5" fill="#ef4444" opacity="0.5"/>
+            <circle cx="550" cy="85" r="5" fill="#ef4444" opacity="0.5"/>
+            <circle cx="590" cy="95" r="5" fill="#ef4444" opacity="0.5"/>
+          </g>
+          <text x="500" y="220" text-anchor="middle" font-size="11" fill="#5e6b85">SMOTE สังเคราะห์ข้อมูลกลุ่ม Fail เพิ่ม (จุดจางคือข้อมูลใหม่)</text>
+        </svg>
+        <div class="svg-caption">SMOTE = Synthetic Minority Oversampling — เพิ่มข้อมูลกลุ่มน้อยจาก k-NN</div>
+      </div>
+    </section>
+
+    <!-- 15. Communication -->
+    <section class="unit" id="s15">
+      <h2><span class="ico">📣</span>15. Data Communication & Storytelling</h2>
+
+      <h3>หลัก 7C's</h3>
+      <div class="v-grid">
+        <div class="v-card"><div class="ico-big">🎯</div><b>Clear</b><div class="desc">ชัดเจน ไม่กำกวม</div></div>
+        <div class="v-card cyan"><div class="ico-big">✂️</div><b>Concise</b><div class="desc">กระชับ ลด Noise</div></div>
+        <div class="v-card green"><div class="ico-big">🔢</div><b>Concrete</b><div class="desc">อ้างตัวเลข/ข้อเท็จจริง</div></div>
+        <div class="v-card accent"><div class="ico-big">✓</div><b>Correct</b><div class="desc">ถูกต้อง น่าเชื่อถือ</div></div>
+        <div class="v-card purple"><div class="ico-big">🔗</div><b>Coherent</b><div class="desc">ลำดับเป็นตรรกะ</div></div>
+        <div class="v-card pink"><div class="ico-big">🧩</div><b>Complete</b><div class="desc">ครบทุกประเด็น</div></div>
+        <div class="v-card"><div class="ico-big">🤝</div><b>Courteous</b><div class="desc">สุภาพ คำนึงผู้ฟัง</div></div>
+      </div>
+
+      <h3>Data Storytelling 3 ส่วน</h3>
+      <div class="svg-wrap">
+        <svg viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="200" cy="100" r="80" fill="#3b82f6" opacity="0.5"/>
+          <circle cx="350" cy="100" r="80" fill="#10b981" opacity="0.5"/>
+          <circle cx="500" cy="100" r="80" fill="#f59e0b" opacity="0.5"/>
+          <text x="200" y="105" text-anchor="middle" font-size="16" font-weight="700" fill="#fff">Data</text>
+          <text x="350" y="105" text-anchor="middle" font-size="16" font-weight="700" fill="#fff">Narrative</text>
+          <text x="500" y="105" text-anchor="middle" font-size="16" font-weight="700" fill="#fff">Visuals</text>
+          <text x="350" y="190" text-anchor="middle" font-size="13" fill="#5e6b85">การเล่าเรื่องที่ดี = ข้อมูลถูกต้อง + เรื่องราวมีบริบท + ภาพที่เข้าใจง่าย</text>
+        </svg>
+      </div>
+
+      <h3>เลือก Chart ให้ตรงกับชนิดข้อมูล</h3>
+      <table>
+        <tr><th>ประเภทข้อมูล</th><th>กราฟที่เหมาะ</th></tr>
+        <tr><td>Categorical (กลุ่ม)</td><td>📊 Bar Chart, 🥧 Pie (กลุ่มน้อย)</td></tr>
+        <tr><td>Continuous (1 ตัว)</td><td>📈 Histogram, Box Plot, Density</td></tr>
+        <tr><td>Continuous × Continuous</td><td>🔵 Scatter Plot</td></tr>
+        <tr><td>Matrix (2D continuous)</td><td>🟧 Heatmap, Contour</td></tr>
+      </table>
+
+      <div class="callout warn">
+        <b>⚠ ข้อควรระวัง:</b>
+        <ul style="margin: 6px 0 0 0">
+          <li>❌ Truncated Y-axis (ตัดแกน Y → ขยายความต่างเทียม)</li>
+          <li>❌ กราฟ 3D อ่านยาก</li>
+          <li>❌ Spaghetti line graph (เส้นเยอะเกินไป)</li>
+          <li>❌ ใช้สีไม่จำเป็น สร้าง noise</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 16. Orange -->
+    <section class="unit" id="s16">
+      <h2><span class="ico">🟠</span>16. Orange Data Mining</h2>
+
+      <h3>Workflow มาตรฐานสำหรับ Predictive Analytics</h3>
+      <div class="svg-wrap">
+        <svg viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg" font-family="Sarabun, sans-serif">
+          <g>
+            <rect x="20" y="80" width="100" height="50" rx="10" fill="#f59e0b"/>
+            <text x="70" y="100" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">📁 File</text>
+            <text x="70" y="118" text-anchor="middle" font-size="10" fill="#fff">นำเข้าข้อมูล</text>
+            <text x="135" y="110" font-size="20" fill="#5e6b85">→</text>
+
+            <rect x="155" y="80" width="120" height="50" rx="10" fill="#3b82f6"/>
+            <text x="215" y="100" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">🎯 Select Columns</text>
+            <text x="215" y="118" text-anchor="middle" font-size="10" fill="#fff">Target / Features</text>
+            <text x="290" y="110" font-size="20" fill="#5e6b85">→</text>
+
+            <rect x="310" y="80" width="120" height="50" rx="10" fill="#8b5cf6"/>
+            <text x="370" y="100" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">✂️ Data Sampler</text>
+            <text x="370" y="118" text-anchor="middle" font-size="10" fill="#fff">Train 60 / Test 40</text>
+            <text x="445" y="110" font-size="20" fill="#5e6b85">→</text>
+
+            <rect x="465" y="80" width="100" height="50" rx="10" fill="#10b981"/>
+            <text x="515" y="100" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">🌳 Tree</text>
+            <text x="515" y="118" text-anchor="middle" font-size="10" fill="#fff">/ Regression</text>
+            <text x="580" y="110" font-size="20" fill="#5e6b85">→</text>
+
+            <rect x="600" y="80" width="120" height="50" rx="10" fill="#ef4444"/>
+            <text x="660" y="100" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">📏 Test &amp; Score</text>
+            <text x="660" y="118" text-anchor="middle" font-size="10" fill="#fff">วัด R²/F1/AUC</text>
+          </g>
+
+          <text x="400" y="170" text-anchor="middle" font-size="12" fill="#5e6b85">+ Predictions ใช้ทำนายข้อมูลใหม่ &nbsp;|&nbsp; Save Data ส่งออกผล</text>
+        </svg>
+      </div>
+
+      <h3>Widget ที่ใช้บ่อย</h3>
+      <div class="v-grid">
+        <div class="v-card accent"><b>📁 File</b><div class="desc">นำเข้า .csv / .xlsx</div></div>
+        <div class="v-card cyan"><b>📊 Distributions</b><div class="desc">ดูการกระจาย</div></div>
+        <div class="v-card cyan"><b>🔵 Scatter Plot</b><div class="desc">ดูความสัมพันธ์</div></div>
+        <div class="v-card cyan"><b>🟦 Heatmap</b><div class="desc">ดู matrix</div></div>
+        <div class="v-card green"><b>📊 Rank</b><div class="desc">Variable Importance</div></div>
+        <div class="v-card green"><b>🌳 Tree / RF</b><div class="desc">Decision Tree</div></div>
+        <div class="v-card green"><b>📐 Linear Regression</b><div class="desc">สมการเชิงเส้น</div></div>
+        <div class="v-card pink"><b>🐍 Python Script</b><div class="desc">SMOTE / คำสั่งเฉพาะ</div></div>
+      </div>
+    </section>
+
+    <!-- QUIZ -->
+    <section class="unit" id="quiz">
+      <h2><span class="ico">📝</span>แบบทดสอบปรนัย 40 ข้อ</h2>
+      <div class="quiz-wrap">
+        <div class="quiz-progress"><div id="qbar"></div></div>
+        <div id="qbody"></div>
+        <div class="quiz-nav">
+          <button class="btn-prev" id="qprev" onclick="prevQ()">← ข้อก่อน</button>
+          <button class="btn-next" id="qnext" onclick="nextQ()">ข้อถัดไป →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ESSAY -->
+    <section class="unit" id="essay">
+      <h2><span class="ico">✍️</span>ข้อสอบอัตนัย 3 ข้อ (พร้อมแนวคำตอบ)</h2>
+
+      <details>
+        <summary>ข้อ 1 — วางแผนวิเคราะห์ข้อมูลแบบบูรณาการ (12 คะแนน)</summary>
+        <p>ครูสอนคณิตศาสตร์ ม.3 มีข้อมูลของนักเรียน 80 คน (Pre-test, Midterm, Final, Participation, Self-study, Family income, Gender, Tutoring) มีนักเรียนกลุ่มหนึ่ง "สอบตก" (Pass=0)</p>
+        <ol>
+          <li>เสนอกระบวนการวิเคราะห์ตาม Data Analytics 4 ระดับ</li>
+          <li>Independent t-test เปรียบเทียบ Final ระหว่างเพศ ผล Levene's = 0.02 (p &lt; 0.05) ใช้สถิติใดต่อ</li>
+          <li>เสนอแผน Predictive Modeling ครอบคลุม feature/target/split/algorithm/metric/imbalanced</li>
+        </ol>
+        <div class="callout success">
+          <b>แนวคำตอบ:</b><br>
+          <b>1)</b> Descriptive (Mean/SD/Histogram) → Diagnostic (Pareto + Fishbone + PI Matrix) → Predictive (Logistic/Tree + train/test) → Prescriptive (remedial class + dashboard)<br>
+          <b>2)</b> ใช้ <b>Welch's t-test</b> เพราะ Levene's ปฏิเสธ H0 → ความแปรปรวนไม่เอกพันธ์<br>
+          <b>3)</b> Target=Pass, Features=Pre-test/Midterm/Participation/Self_Study/Family/Gender/Tutoring; Split 60:40 หรือ 5-fold CV; Decision Tree + Random Forest; F1, AUC, Confusion Matrix; แก้ imbalanced ด้วย SMOTE
+        </div>
+      </details>
+
+      <details>
+        <summary>ข้อ 2 — Performance–Importance Matrix (10 คะแนน)</summary>
+        <p>A: พื้นฐานต่ำ I=0.85 P=60% &middot; B: มีส่วนร่วมต่ำ I=0.40 P=55% &middot; C: ขาดเป้าหมาย I=0.65 P=22%</p>
+        <ol>
+          <li>จำแนกตำแหน่งใน PI Matrix ด้วยค่าเฉลี่ย</li>
+          <li>เลือกแก้ปัจจัยใดก่อน อธิบายด้วย Critical Zone</li>
+          <li>เสนอแผน Targeted Intervention 3 ข้อ</li>
+        </ol>
+        <div class="callout success">
+          <b>แนวคำตอบ:</b><br>
+          <b>1)</b> ค่าเฉลี่ย I=0.633, P=45.67% → A อยู่ Critical Zone | B = Less Priority | C = Watch Zone<br>
+          <b>2)</b> เลือก A เป็นลำดับแรก (สำคัญสูง + พบมาก) ลงทุนแล้วได้ผลตอบแทนสูงสุด<br>
+          <b>3)</b> Pre-test diagnostic / คลินิกเสริมพื้นฐาน + peer-tutor / ติดตามด้วย PI Matrix ทุก 2 สัปดาห์
+        </div>
+      </details>
+
+      <details>
+        <summary>ข้อ 3 — ตีความ Multiple Regression (8 คะแนน)</summary>
+        <p>Midterm̂ = 10.5 + 1.2·Homework + 4.5·LMS_Login &nbsp;|&nbsp; R² = 0.82, RMSE = 2.6 (เต็ม 30)</p>
+        <ol>
+          <li>LMS_Login เพิ่ม 1 ครั้ง คะแนนเปลี่ยนอย่างไร</li>
+          <li>Intercept = 10.5 หมายถึงอะไร</li>
+          <li>R² = 0.82, RMSE = 2.6 บ่งชี้ความเชื่อมั่นอย่างไร</li>
+          <li>นำไปทำนายข้อมูลใหม่ได้หรือไม่</li>
+        </ol>
+        <div class="callout success">
+          <b>แนวคำตอบ:</b><br>
+          <b>1)</b> เพิ่ม 4.5 คะแนนโดยเฉลี่ย (slope b₂)<br>
+          <b>2)</b> ค่าฐานเริ่มต้นเมื่อ Homework=0 และ LMS=0 ระวังตีความเมื่อ X=0 ไม่อยู่ในข้อมูล<br>
+          <b>3)</b> R² 82% = อธิบายความแปรปรวน Y ได้สูง / RMSE 2.6 จากเต็ม 30 = แม่นยำสูง<br>
+          <b>4)</b> ใช้ได้ — แต่ต้อง 1) ทดสอบกับ Test set ใหม่ 2) ตรวจ LINE assumptions 3) ติดตามและปรับเมื่อบริบทเปลี่ยน
+        </div>
+      </details>
+    </section>
+
+    <!-- TIPS -->
+    <section class="unit" id="tips">
+      <h2><span class="ico">💡</span>เคล็ดลับเตรียมสอบฉบับเข้ม</h2>
+      <div class="v-grid">
+        <div class="v-card accent"><b>1. มาตรวัด</b><div class="desc">เลือกสถิติให้ตรง — ออกข้อสอบบ่อย</div></div>
+        <div class="v-card accent"><b>2. Hypothesis 4 ขั้น</b><div class="desc">H0/H1 → α → สถิติ → p</div></div>
+        <div class="v-card accent"><b>3. t-test Decision</b><div class="desc">Normal? → Levene → Student/Welch/MW</div></div>
+        <div class="v-card accent"><b>4. ANOVA + Post-hoc</b><div class="desc">Games-Howell ปลอดภัย</div></div>
+        <div class="v-card accent"><b>5. Correlation</b><div class="desc">เครื่องหมาย=ทิศ |r|=ขนาด r²×100=ร่วม</div></div>
+        <div class="v-card accent"><b>6. Regression</b><div class="desc">Intercept/Slope/R²/LINE</div></div>
+        <div class="v-card accent"><b>7. Analytics 4 ระดับ</b><div class="desc">+ PI Matrix + Pareto + Fishbone</div></div>
+        <div class="v-card accent"><b>8. Confusion Matrix</b><div class="desc">Acc/P/R/Spec/F1 ต้องคล่อง</div></div>
+        <div class="v-card accent"><b>9. Overfit + SMOTE</b><div class="desc">Imbalanced ออกบ่อย</div></div>
+        <div class="v-card accent"><b>10. Lab Orange</b><div class="desc">ฝึก Lab 2 + Lab 3 ให้คล่อง</div></div>
+      </div>
+      <div class="callout success" style="margin-top:18px; text-align:center; font-size:18px">
+        🎯 <b>ขอให้สอบผ่านด้วยคะแนนสูง ๆ — สู้ ๆ ครับ!</b>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+// ====== TOC active state ======
+const tocLinks = document.querySelectorAll('aside.toc a');
+const sections = document.querySelectorAll('section.unit');
+function updateActive() {
+  let cur = '';
+  sections.forEach(s => { if (s.getBoundingClientRect().top < 130) cur = s.id; });
+  tocLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + cur));
+}
+window.addEventListener('scroll', updateActive);
+updateActive();
+
+// ====== Yamane calculator ======
+function calcYamane() {
+  const N = +document.getElementById('ya_N').value;
+  const e = +document.getElementById('ya_e').value;
+  const n = N / (1 + N * e * e);
+  document.getElementById('ya_out').innerHTML = `ขนาดตัวอย่างที่ต้องใช้: <b style="color:var(--blue); font-size:18px">${Math.ceil(n)}</b> คน &nbsp;<span style="color:var(--muted); font-size:13px">(จาก N=${N}, e=${e})</span>`;
+}
+
+// ====== Confusion Matrix calculator ======
+function calcCM() {
+  const tp = +document.getElementById('cm_tp').value || 0;
+  const fn = +document.getElementById('cm_fn').value || 0;
+  const fp = +document.getElementById('cm_fp').value || 0;
+  const tn = +document.getElementById('cm_tn').value || 0;
+  const n = tp + fn + fp + tn;
+  if (n === 0) { document.getElementById('cm_out').innerHTML = '<i>กรุณาใส่ค่าตัวเลข</i>'; return; }
+  const acc = ((tp + tn) / n * 100).toFixed(2);
+  const prec = tp + fp > 0 ? (tp / (tp + fp) * 100).toFixed(2) : '—';
+  const rec = tp + fn > 0 ? (tp / (tp + fn) * 100).toFixed(2) : '—';
+  const spec = tn + fp > 0 ? (tn / (tn + fp) * 100).toFixed(2) : '—';
+  const f1 = (tp + fp > 0 && tp + fn > 0) ?
+    (2 * (tp / (tp + fp)) * (tp / (tp + fn)) / ((tp / (tp + fp)) + (tp / (tp + fn))) * 100).toFixed(2) : '—';
+  document.getElementById('cm_out').innerHTML = `
+    <div class="row"><span>Accuracy</span><b>${acc}%</b></div>
+    <div class="row"><span>Precision (Pos)</span><b>${prec}%</b></div>
+    <div class="row"><span>Recall = Sensitivity</span><b>${rec}%</b></div>
+    <div class="row"><span>Specificity</span><b>${spec}%</b></div>
+    <div class="row"><span>F1-score</span><b>${f1}%</b></div>
+    <div class="row"><span>n รวม</span><b>${n}</b></div>
+  `;
+}
+calcYamane(); calcCM();
+
+// ====== QUIZ ======
+const QZ = [
+  {q:"ตัวแปรเพศ (ชาย/หญิง) จัดอยู่ในมาตรวัดใด", o:["Nominal","Ordinal","Interval","Ratio"], a:0, e:"เพศจำแนกได้แต่ไม่มีลำดับ → Nominal"},
+  {q:"ค่ากลางใดเหมาะกับข้อมูล Ordinal มากที่สุด", o:["Mean","Median","Mode","Variance"], a:1, e:"Ordinal เรียงลำดับได้ Median เหมาะที่สุด"},
+  {q:"ขนาดกลุ่มตัวอย่างที่ดี ควรมาจากวิธีการสุ่มแบบใด", o:["Convenience","Probability Sampling","Snowball","Quota"], a:1, e:"Probability ทำให้กลุ่มตัวอย่างเป็นตัวแทน ปชก ได้ดีที่สุด"},
+  {q:"วิธีการสุ่มที่ 'แบ่งประชากรเป็นชั้น' ก่อนสุ่มในแต่ละชั้น", o:["Simple Random","Systematic","Stratified Random","Cluster Random"], a:2, e:"Stratified แบ่งประชากรเป็นชั้นที่มีคุณลักษณะร่วม"},
+  {q:"Standard Error (SE) จะลดลงเมื่อใด", o:["n เพิ่มขึ้น","ระดับความเชื่อมั่นเพิ่ม","SD เพิ่ม","α เพิ่ม"], a:0, e:"SE = SD/√n ; n ↑ ⇒ SE ↓"},
+  {q:"Type I error (α) คืออะไร", o:["ปฏิเสธ H0 ทั้งที่ H0 จริง","ยอมรับ H0 ทั้งที่ H0 เท็จ","p > α","เลือกตัวอย่างผิด"], a:0, e:"α = โอกาสปฏิเสธ H0 ทั้งที่ H0 จริง (ตื่นตูม)"},
+  {q:"p-value = 0.03 และ α = 0.05 ผลควรเป็นอย่างไร", o:["ไม่ปฏิเสธ H0","ปฏิเสธ H0","ตรวจ assumption ก่อน","สรุปไม่ได้"], a:1, e:"p < α ⇒ ปฏิเสธ H0"},
+  {q:"Independent t-test ถ้า Levene's Test ให้ p < α ควรใช้สถิติใด", o:["Student's t","Welch's t","Mann-Whitney U","Wilcoxon"], a:1, e:"ความแปรปรวนไม่เท่ากัน ⇒ Welch's t"},
+  {q:"ถ้า Shapiro-Wilk ให้ p < α สำหรับ One-sample ควรใช้สถิติใด", o:["Welch's t","Mann-Whitney","Wilcoxon Signed-Rank","Levene's"], a:2, e:"Wilcoxon Signed-Rank = non-parametric ของ One-sample"},
+  {q:"Paired t-test ใช้กรณีใด", o:["2 กลุ่มอิสระ","Pre/Post ของกลุ่มเดียวกัน",">2 กลุ่ม","เทียบกับมาตรฐาน"], a:1, e:"Paired = dependent same group"},
+  {q:"ANOVA ใช้แทน t-test เมื่อใด", o:["ทำงานเร็วขึ้น","มี > 2 กลุ่ม เพื่อหลีก Type I inflation","ข้อมูลไม่ปกติ","ลด β"], a:1, e:"ANOVA ลดการเฟ้อ Type I error"},
+  {q:"Post-hoc ใดเหมาะเมื่อความแปรปรวนไม่เอกพันธ์", o:["Tukey HSD","Bonferroni","Games-Howell","Scheffé"], a:2, e:"Games-Howell ใช้กับ heterogeneous variance"},
+  {q:"Pearson's r เหมาะกับมาตรวัดใด", o:["Nom × Nom","Ord × Ord","Interval/Ratio (โค้งปกติ)","Nom × Interval"], a:2, e:"Pearson = Continuous-Continuous ที่ปกติ"},
+  {q:"Pearson r = −0.85 แปลว่าอย่างไร", o:["บวกสูงมาก","ลบสูงมาก","ไม่มีความสัมพันธ์","Outlier"], a:1, e:"เครื่องหมายลบ = ทิศทางลบ |r| สูง = สัมพันธ์มาก"},
+  {q:"Chi-square ข้อจำกัดสำคัญข้อใด", o:["ตัวแปรต้องเป็น Interval","ความถี่คาดหวังในแต่ละ cell ≥ 5","n > 1000","ผ่าน Levene's"], a:1, e:"Chi-square ต้องการ Expected ≥ 5"},
+  {q:"ในสมการ Ŷ = 19.21 + 2.77X ค่า 19.21 หมายถึงอะไร", o:["Slope","Intercept","R²","ค่าเฉลี่ย Y"], a:1, e:"Intercept = ค่า Y เมื่อ X = 0"},
+  {q:"จากสมการเดิม ถ้า X = 10, Ŷ = ?", o:["19.21","27.70","46.91","31.98"], a:2, e:"19.21 + 2.77×10 = 46.91"},
+  {q:"R² = 0.82 ตีความว่าอย่างไร", o:["ผิด 82%","อธิบาย Y ได้ 82%","ผ่าน 82%","Slope = 0.82"], a:1, e:"R² = สัดส่วนความแปรปรวน Y ที่อธิบายได้"},
+  {q:"ข้อใดเป็นข้อตกลงของ Linear Regression", o:["ตัวแปรอิสระต้อง Categorical","Residual ปกติ + แปรปรวนคงที่","X-Y เป็นโค้ง","n ต้องเป็นเลขคู่"], a:1, e:"LINE: Linearity, Independence, Normality, Equal variance"},
+  {q:"ระดับ Diagnostic Analytics ตอบคำถามใด", o:["เกิดอะไรขึ้น","ทำไมจึงเกิดขึ้น","จะเกิดอะไรต่อ","ควรทำอะไร"], a:1, e:"Diagnostic = หา causes"},
+  {q:"ข้อมูลอัตราการขาดเรียน 5 สัปดาห์ เป็นการวิเคราะห์ระดับใด", o:["Descriptive","Diagnostic","Predictive","Prescriptive"], a:0, e:"อธิบายแนวโน้ม = Descriptive"},
+  {q:"กฎ Pareto 80/20 ใช้เพื่อ", o:["ประเมินโมเดล","จัดลำดับความสำคัญของปัญหา","พิสูจน์ความสัมพันธ์","สร้าง Decision Tree"], a:1, e:"Pareto = ลำดับความสำคัญ"},
+  {q:"Proxy Variable ใดเหมาะที่สุดสำหรับ 'ความรับผิดชอบ'", o:["คะแนนกลางภาค","การส่งงานตรงเวลา","ระยะทางบ้าน","ส่วนสูง"], a:1, e:"การส่งงานตรงเวลา = proxy ของความรับผิดชอบ"},
+  {q:"แกน X ของ Performance-Importance Matrix แสดงสิ่งใด", o:["% นักเรียนที่พบปัญหา","ค่าความสำคัญของปัจจัย","R²","Accuracy"], a:1, e:"X = Importance, Y = Performance"},
+  {q:"ปัจจัย I=0.81, P=53% อยู่ในโซนใด", o:["Critical Zone","Maintain","Low Priority","Monitor"], a:0, e:"I สูง + P สูง = Critical Zone"},
+  {q:"Fishbone Diagram ประกอบด้วยส่วนใด", o:["Class/Sub-Class/Output","Problem/Main/Sub Causes","Input/Process/Output","Train/Test/Validate"], a:1, e:"ปัญหา + สาเหตุหลัก + สาเหตุย่อย"},
+  {q:"R² และ RMSE ใช้กับ target ประเภทใด", o:["Categorical","Numerical","Datetime","Text"], a:1, e:"Regression target = ตัวเลข"},
+  {q:"Sensitivity คือค่าใด", o:["TN/(TN+FP)","TP/(TP+FN)","(TP+TN)/n","2PR/(P+R)"], a:1, e:"Sensitivity = Recall_Pos = TP/(TP+FN)"},
+  {q:"Specificity คือค่าใด", o:["TN/(TN+FP)","TP/(TP+FN)","(TP+TN)/n","Precision"], a:0, e:"Specificity = TN/(TN+FP)"},
+  {q:"F1-score คำนวณอย่างไร", o:["(P+R)/2","2PR/(P+R)","P×R","(TP+TN)/n"], a:1, e:"F1 = harmonic mean ของ P และ R"},
+  {q:"AUC = 0.5 หมายถึง", o:["ดีที่สุด","ทายแบบสุ่ม","ตรงข้ามความจริง","Overfit"], a:1, e:"AUC = 0.5 ⇒ random guess"},
+  {q:"Confusion Matrix: TP=93, FN=2, FP=4, TN=1 → Accuracy = ?", o:["80%","94%","97.89%","33.33%"], a:1, e:"(93+1)/100 = 94%"},
+  {q:"จากตารางเดิม Specificity = ?", o:["20%","33.33%","95.88%","97.89%"], a:0, e:"TN/(TN+FP) = 1/5 = 20%"},
+  {q:"ตัวแปรสำคัญใน Decision Tree พิจารณาจากสิ่งใด", o:["จุดตัดแกน Y","Split ได้บ่อย/ชัดที่สุด","ขนาดตัวอย่าง","ความยาวกราฟ"], a:1, e:"DT ดูตัวแปรที่ Split กลุ่มได้ดี"},
+  {q:"Information Gain (IG) ที่ดี ควรมีลักษณะใด", o:["IG ต่ำ","IG = 0","IG สูง","IG ลบ"], a:2, e:"เลือก attribute ที่ IG สูงสุด"},
+  {q:"Overfitting หมายถึง", o:["Train และ Test ต่ำทั้งคู่","Train สูง Test ตก","Train ตก Test สูง","ข้อมูลขาดหาย"], a:1, e:"Overfit = high train, low test"},
+  {q:"SMOTE ใช้แก้ปัญหาใด", o:["Multicollinearity","Imbalanced (สังเคราะห์ข้อมูลกลุ่มน้อย)","Outlier","Type I"], a:1, e:"SMOTE = Synthetic Minority Oversampling"},
+  {q:"กราฟใดเหมาะกับ 'ความสัมพันธ์ระหว่างคู่ตัวแปรต่อเนื่อง'", o:["Bar","Pie","Scatter Plot","Histogram"], a:2, e:"Scatter Plot = Continuous × Continuous"},
+  {q:"ใน Orange Widget ใดใช้กำหนด Target และ Features", o:["File","Linear Regression","Select Columns","Save Data"], a:2, e:"Select Columns ใช้กำหนดบทบาทตัวแปร"},
+  {q:"Best Practice ของ Data Visualization คือ", o:["3D สวยงาม","ตัดแกน Y","ใช้สีเฉพาะที่จำเป็น สื่อสารชัด","ใส่ label ทุกจุด"], a:2, e:"Simplicity + Functionality + Quality + Beauty"}
+];
+
+let qIdx = 0, qAns = new Array(QZ.length).fill(null);
+
+function renderQ() {
+  const item = QZ[qIdx];
+  const total = QZ.length;
+  const ans = qAns[qIdx];
+  document.getElementById('qbar').style.width = ((qIdx + 1) / total * 100) + '%';
+
+  let opts = item.o.map((o, i) => {
+    let cls = '';
+    if (ans !== null) {
+      if (i === item.a) cls = 'correct';
+      else if (i === ans) cls = 'wrong';
+    }
+    return `<button class="${cls}" ${ans !== null ? 'disabled' : ''} onclick="answer(${i})">${'กขคง'[i]}. ${o}</button>`;
+  }).join('');
+
+  let explain = '';
+  if (ans !== null) {
+    const ok = ans === item.a;
+    explain = `<div class="quiz-explain"><b>${ok ? '✅ ถูกต้อง!' : '❌ คำตอบที่ถูกคือ ' + 'กขคง'[item.a]}</b><br>${item.e}</div>`;
+  }
+
+  document.getElementById('qbody').innerHTML = `
+    <div class="quiz-q">ข้อ ${qIdx + 1} / ${total} &middot; ${item.q}</div>
+    <div class="quiz-options">${opts}</div>
+    ${explain}
+  `;
+
+  document.getElementById('qprev').disabled = (qIdx === 0);
+  document.getElementById('qnext').textContent = (qIdx === total - 1) ? 'ดูสรุปผล 🎯' : 'ข้อถัดไป →';
+}
+
+function answer(i) { qAns[qIdx] = i; renderQ(); }
+function nextQ() { if (qIdx === QZ.length - 1) { showSummary(); return; } qIdx++; renderQ(); }
+function prevQ() { if (qIdx > 0) { qIdx--; renderQ(); } }
+
+function showSummary() {
+  const correct = qAns.filter((a, i) => a === QZ[i].a).length;
+  const total = QZ.length;
+  const pct = Math.round(correct / total * 100);
+  let grade = pct >= 80 ? '🏆 ยอดเยี่ยม!' : pct >= 60 ? '👍 ดี — ทบทวนเพิ่มได้อีก' : '📚 ลองอ่านเนื้อหาแล้วทำใหม่นะ';
+
+  document.getElementById('qbody').innerHTML = `
+    <div class="quiz-summary">
+      <h3>ผลคะแนน</h3>
+      <div class="score">${correct} / ${total}</div>
+      <div style="font-size:22px; color:var(--blue); font-weight:600">${pct}%</div>
+      <p style="margin-top:14px; font-size:18px">${grade}</p>
+      <button onclick="resetQuiz()" style="margin-top:14px; padding:10px 22px; border:none; background:var(--blue); color:#fff; border-radius:8px; cursor:pointer; font-family:inherit; font-size:15px; font-weight:600">↻ ทำใหม่</button>
+    </div>
+  `;
+  document.getElementById('qbar').style.width = '100%';
+  document.getElementById('qprev').disabled = true;
+  document.getElementById('qnext').disabled = true;
+}
+
+function resetQuiz() {
+  qIdx = 0; qAns = new Array(QZ.length).fill(null);
+  document.getElementById('qprev').disabled = false;
+  document.getElementById('qnext').disabled = false;
+  renderQ();
+}
+
+renderQ();
+</script>
+</body>
+</html>
